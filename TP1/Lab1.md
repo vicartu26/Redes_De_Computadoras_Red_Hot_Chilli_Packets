@@ -62,7 +62,12 @@ f = c/λ = 5 GHz
 
 **f)** Sí, este fenómeno afecta a los routers de internet. Por ejemplo, en la vida cotidiana podemos verlo al alejarnos físicamente del router o si la señal tiene que atravesar paredes gruesas o varios obstáculos: la señal se vuelve inestable. Esto afecta principalmente a las frecuencias más altas, de 5 GHz, que pierden potencia hasta quedar por debajo de la sensibilidad del receptor, forzando la reconexión hacia la banda de 2,4 GHz.
 
-**g)**
+**g)** 
+- i) Sí, este fenómeno afecta a las transmisiones de telefonía celular porque la señal pierde potencia por la distancia y por obstáculos físicos (edificios, paredes).
+
+- ii) Sí, este fenómeno afecta a las transmisiones por cable coaxial porque a medida que el cable se hace más largo, la señal eléctrica va perdiendo fuerza por la propia resistencia del material del cable.
+
+- iii) Sí, este fenómeno afecta a las transmisiones por fibra óptica, aunque en una medida mucho menor que en los otros medios.
 
 ---
 
@@ -81,6 +86,7 @@ a)
 ![Diagrama de señal digital](images/image2.png)
 
 **c)**
+
 
 **d)** Considerando la pendiente mencionada y graficada, pensamos que lo más adecuado sería medir el nivel de tensión en cada flanco de bajada de la señal de clock, donde ya se estabilizó la señal. En el gráfico esto será T0, T2, T4 y consecutivamente todos los TX pares.
 
