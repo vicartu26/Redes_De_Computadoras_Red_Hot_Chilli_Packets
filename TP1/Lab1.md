@@ -1,5 +1,7 @@
 # UNIVERSIDAD NACIONAL DE CÓRDOBA
+
 ### FACULTAD DE CIENCIAS EXACTAS, FÍSICAS, Y NATURALES
+
 ### CÁTEDRA DE COMPUTACIÓN
 
 ![Escudo UNC](images/image1.png)
@@ -7,6 +9,7 @@
 ## "Trabajo Práctico N°1: Repaso de fundamentos esenciales e introducción a Packet Tracer"
 
 **Alumnos:**
+
 - Angélica Moisés (46765089)
 - Victor José Arturo Castro (46522607)
 - Genaro Agustín Mateos Ferrero (19103190)
@@ -28,6 +31,18 @@ En este trabajo práctico se revisan conceptos básicos de ondas electromagnéti
 ## Desarrollo
 
 ### Punto 1
+
+b)
+
+La longitud de onda ($\lambda$) es la distancia entre dos puntos equivalentes consecutivos de la onda. Entonces:
+
+$ \lambda = 120mm - 60mm = 60 mm = 0,06m$
+
+Si la onda viaja a la velocidad de la luz entonces: $v=c≈3*10^8 \frac{m}{s}$
+
+Teniendo en cuenta que $v=f*\lambda$. Al despejar la frecuencia se tiene:
+
+$f = \frac{v}{\lambda} = \frac{3*10^8 \frac{m}{s}}{0,06m} = 5GHz$
 
 **c)**
 
@@ -53,7 +68,13 @@ f = c/λ = 5 GHz
 
 ### Punto 2
 
-**a)**
+a)
+
+- El medio de transmision es simplex, pues es unidireccional y el flujo de información tiene un solo sentido.
+
+- La señal es sincrónica porque el emisor comparte un clock con el receptor.
+
+- El modo de transmisión es serie ya que los bits se transmiten secuencialmente a través de un solo canal.
 
 **b)** No, este paradigma no es el mejor para transmitir datos rápida y bidireccionalmente. El paradigma usado en la imagen es simplex, lo que hace imposible que la señal vaya en dos direcciones; debería ser full duplex para ser la mejor forma.
 
