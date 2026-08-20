@@ -90,7 +90,13 @@ Razones por las que no conviene transmitir una señal escalonada de forma inalá
 
 ### Punto 4
 
----
+![](images/IP-Laptop.png)
+![](images/IP-PC.png)
+![](images/Ping-Laptop.png)
+![](images/Ping-PC.png)
+![](images/Trace-Laptop.png)
+![](images/Trace-PC.png)
+![](images/Ping-timeout.png)
 
 ## Conclusiones
 
