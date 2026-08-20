@@ -86,7 +86,19 @@ a)
 ![Diagrama de señal digital](images/image2.png)
 
 **c)**
+Tomando la 4ta letra del nombre de nuestro grupo ("Red Hot **C**hilli Packets" / "Red **H**ot Chilli Packets"), si elegimos la letra **H** (mayúscula), su valor en código ASCII equivale al número decimal 72. En binario de 8 bits se representa como: **`01001000`**.
 
+Para transmitir este byte la señal mantendrá los siguientes niveles de tensión:
+
+* **T0:** Nivel Bajo (`0`)
+* **T1:** Nivel Alto (`1`)
+* **T2:** Nivel Bajo (`0`)
+* **T3:** Nivel Bajo (`0`)
+* **T4:** Nivel Alto (`1`)
+* **T5:** Nivel Bajo (`0`)
+* **T6:** Nivel Bajo (`0`)
+* **T7:** Nivel Bajo (`0`)
+![Diagrama de señal para la letra H](./2.c.png)
 
 **d)** Considerando la pendiente mencionada y graficada, pensamos que lo más adecuado sería medir el nivel de tensión en cada flanco de bajada de la señal de clock, donde ya se estabilizó la señal. En el gráfico esto será T0, T2, T4 y consecutivamente todos los TX pares.
 
