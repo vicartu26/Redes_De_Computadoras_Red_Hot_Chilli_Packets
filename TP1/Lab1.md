@@ -98,7 +98,8 @@ Para transmitir este byte la señal mantendrá los siguientes niveles de tensió
 * **T5:** Nivel Bajo (`0`)
 * **T6:** Nivel Bajo (`0`)
 * **T7:** Nivel Bajo (`0`)
-![Diagrama de señal para la letra H](./2.c.png)
+
+![](images/2.c.png)
 
 **d)** Considerando la pendiente mencionada y graficada, pensamos que lo más adecuado sería medir el nivel de tensión en cada flanco de bajada de la señal de clock, donde ya se estabilizó la señal. En el gráfico esto será T0, T2, T4 y consecutivamente todos los TX pares.
 
