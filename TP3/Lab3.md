@@ -58,11 +58,12 @@ Dentro de esta trama podemos observar que el paquete es IPv4 (Type: 0x0800 en la
 
 c) Comparar las direcciones MAC y las direcciones IP encontradas. ¿Representan lo mismo?
 
-_Pendiente de completar._
+No representan lo mismo, la dirección IP representa ubicaciones de red, mientras que MAC  lo hace respecto a la dirección física del hardware. Dicho de otro modo, la dirección IP identifica la conexión del dispositivo en la red, y la MAC el dispositivo en sí. Además se puede observar que los primeros 6 dígitos de ésta última representan al fabricante del dispositivo (OUI, Organizational Unique Identifier), por esto vemos ASUSTekCOMPU en source y zte_95 en destination.
+
 
 d) Observar el campo EtherType. ¿Qué protocolo está encapsulado dentro de la trama analizada?
-
-_Pendiente de completar._
+![Protocolo dentro de la trama](images/2-d.png) 
+Observamos que el protocolo encapsulado en la trama analizada es el llamado “protocolo de datagrama de usuario” (User Datagram Protocol), que pertenece dentro de la familia TCP/IP y, en este caso, utiliza Internet Protocol versión 4.
 
 ## Punto 3:
 
