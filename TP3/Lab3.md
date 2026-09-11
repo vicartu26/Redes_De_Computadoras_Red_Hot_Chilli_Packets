@@ -71,11 +71,27 @@ Vamos ahora a subir una capa y observar el transporte de información mediante T
 
 a) ¿Qué problema(s) resuelve TCP que no resuelve directamente Ethernet ni IP?
 
-_Pendiente de completar._
+Los problemas que resuelve TCP que los otros no pueden resolver serían: la entrega fiable de datos entre aplicaciones, ya que da retransmite paquetes si nota ausencia de alguno; el control de flujo de datos y el ordenamiento de datos por si estos llegan desordenados al entrar por distintos medios.
 
 b) Investigar los campos más importantes de la metadata en un frame TCP. ¿Para qué sirve cada uno?
 
-_Pendiente de completar._
+Los campos de un segmento TCP y sus usos son:
+
+- **Puerto de origen (16 bits):** Indica el número de puerto del emisor.
+- **Puerto de destino (16 bits):** Indica el número de puerto del receptor.
+- **Número de secuencia (32 bits):** Especifica el número de secuencia del primer byte de datos de este segmento.
+- **Número de reconocimiento (32 bits):** Identifica la posición del byte más alto recibido.
+- **Desplazamiento de datos (4 bits):** Especifica el desplazamiento de la parte de datos del segmento (longitud del encabezado).
+- **Flags:** Bits de control para identificar la finalidad del segmento:
+  - **URG:** El campo de puntero urgente es válido.
+  - **ACK:** El campo de reconocimiento es válido.
+  - **PSH:** El segmento solicita un PUSH (procesamiento inmediato).
+  - **RST:** Restablece la conexión.
+  - **SYN:** Sincroniza los números de secuencia.
+  - **FIN:** El remitente ha alcanzado el final de la corriente de bytes.
+- **Ventana (16 bits):** Especifica la cantidad de datos que el destino está dispuesto a aceptar.
+- **Checksum (16 bits):** Verifica la integridad de la cabecera y los datos del segmento.
+- **Puntero urgente (16 bits):** Indica datos que se deben entregar lo más rápidamente posible. Especifica la posición donde finalizan los datos urgentes.
 
 c) Explicar el Three y Four way handshake en TCP.
 
