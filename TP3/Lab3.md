@@ -93,5 +93,7 @@ f) ¿Qué conclusión podemos sacar de que sea tan fácil ver un paquete que via
 _Pendiente de completar._
 
 ## Punto 4:
-
-_Pendiente de completar._
+Siguiendo los pasos para iniciar la conexión pudimos verificar las respuestas del servidor con los comandos correspondientes.
+![Interacción con el servidor - Packet Sender](images/PacketSender.png)
+![Interacción con el servidor - Wireshark](images/Wireshark.png)
+Después de conseguir el paquete específico para nuestro grupo, pudimos completar el siguiente link utilizando los comandos de los demás grupos: https://www.youtube.com/watch?v=dQw4w9WgXcQ
