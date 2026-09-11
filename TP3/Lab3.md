@@ -79,7 +79,13 @@ _Pendiente de completar._
 
 c) Explicar el Three y Four way handshake en TCP.
 
-_Pendiente de completar._
+El Three way handshake o diálogo en tres pasos, como su nombre indica, consiste básicamente de tres partes. En la primera el emisor o cliente inicia el proceso de comunicación enviando un segmento TCP con la flag de SYN activada y un número de secuencia inicial  i. Luego el receptor o servidor confirma el número de secuencia recibido enviando un AN=i+1 y envía su propio número de secuencia inicial j.(SYN + ACK). Finalmente, el cliente confirma el número de secuencia del servidor enviando AN=j+1 y se establece la conexión.
+El Four way handshake funciona de forma similar:
+Paso 1: el usuario emite una orden de cierre (Close) y se envía  un segmento con el bit de FIN activado (FIN i).
+Paso 2: el receptor recibe el FIN y devuelve una confirmación ACK con AN= i+1.
+Paso 3: cuando el receptor termina de enviar todos sus datos pendientes y su usuario ejecuta la orden de cierre, envía su propio segmento FIN  j.
+Paso 4: el emisor inicial confirma el FIN enviando un ACK AN = j+1 , luego debe esperar un intervalo de tiempo igual a dos veces el máximo tiempo de vida esperado un segmento antes de cerrar definitivamente la conexión.
+
 
 d) Iniciar la conexión enviando un paquete, capturar el handshake y el paquete de datos. Analizar el paquete de datos, sus distintas partes y encontrar la carga útil del paquete usando WireShark.
 
