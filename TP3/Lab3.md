@@ -60,7 +60,6 @@ c) Comparar las direcciones MAC y las direcciones IP encontradas. ¿Representan 
 
 No representan lo mismo, la dirección IP representa ubicaciones de red, mientras que MAC  lo hace respecto a la dirección física del hardware. Dicho de otro modo, la dirección IP identifica la conexión del dispositivo en la red, y la MAC el dispositivo en sí. Además se puede observar que los primeros 6 dígitos de ésta última representan al fabricante del dispositivo (OUI, Organizational Unique Identifier), por esto vemos ASUSTekCOMPU en source y zte_95 en destination.
 
-
 d) Observar el campo EtherType. ¿Qué protocolo está encapsulado dentro de la trama analizada?
 ![Protocolo dentro de la trama](images/2-d.png) 
 Observamos que el protocolo encapsulado en la trama analizada es el llamado “protocolo de datagrama de usuario” (User Datagram Protocol), que pertenece dentro de la familia TCP/IP y, en este caso, utiliza Internet Protocol versión 4.
@@ -102,7 +101,6 @@ Paso 2: el receptor recibe el FIN y devuelve una confirmación ACK con AN= i+1.
 Paso 3: cuando el receptor termina de enviar todos sus datos pendientes y su usuario ejecuta la orden de cierre, envía su propio segmento FIN  j.
 Paso 4: el emisor inicial confirma el FIN enviando un ACK AN = j+1 , luego debe esperar un intervalo de tiempo igual a dos veces el máximo tiempo de vida esperado un segmento antes de cerrar definitivamente la conexión.
 
-
 d) Iniciar la conexión enviando un paquete, capturar el handshake y el paquete de datos. Analizar el paquete de datos, sus distintas partes y encontrar la carga útil del paquete usando WireShark.
 
 _Pendiente de completar._
@@ -113,9 +111,10 @@ _Pendiente de completar._
 
 f) ¿Qué conclusión podemos sacar de que sea tan fácil ver un paquete que viaja a través de la red?
 
-_Pendiente de completar._
+Que sea tan fácil ver los datos demuestra que la red, por sí sola, no oculta ni protege la información que enviamos. Sin protección, una persona conectada a la misma red puede interceptar e interpretar los mensajes enviados. El sistema básico de internet solo se encarga de que los datos lleguen a destino, no de guardarlos en secreto. Todo lo dicho anteriormente demuestra que es necesario utilizar ciertos protocolos para proteger la información.
 
 ## Punto 4:
+
 Siguiendo los pasos para iniciar la conexión pudimos verificar las respuestas del servidor con los comandos correspondientes.
 ![Interacción con el servidor - Packet Sender](images/PacketSender.png)
 ![Interacción con el servidor - Wireshark](images/Wireshark.png)
