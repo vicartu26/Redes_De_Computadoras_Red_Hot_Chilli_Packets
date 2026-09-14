@@ -113,11 +113,11 @@ Paso 4: el emisor inicial confirma el FIN enviando un ACK AN = j+1 , luego debe 
 
 d) Iniciar la conexión enviando un paquete, capturar el handshake y el paquete de datos. Analizar el paquete de datos, sus distintas partes y encontrar la carga útil del paquete usando WireShark.
 
-_Pendiente de completar._
+![Paquete de datos - Whireshark](images/Packet3.png)
 
 e) Finalizar la conexión y capturar el Four-way handshake.
 
-_Pendiente de completar._
+-
 
 f) ¿Qué conclusión podemos sacar de que sea tan fácil ver un paquete que viaja a través de la red?
 
