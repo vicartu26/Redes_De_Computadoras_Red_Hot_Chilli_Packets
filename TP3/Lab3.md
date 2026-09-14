@@ -25,11 +25,11 @@ Vamos a empezar observando cómo se organiza la información dentro de una red l
 
 a) ¿Qué función cumple la capa de enlace dentro del modelo OSI? ¿Qué tipo de comunicación resuelve?
 
-_Pendiente de completar._
+La capa de enlace de datos en el modelo OSI se encarga de transformar el medio de transmisión físico en un enlace fiable y libre de errores para la capa de red, gestionando la estructuración de datos en tramas, el direccionamiento físico (direcciones MAC), la detección de errores y el control de flujo. Con esto, resuelve la comunicación nodo a nodo o salto a salto, garantizando la transferencia directa y correcta de tramas de datos exclusivamente entre dos dispositivos adyacentes conectados en el mismo segmento de red local.
 
 b) ¿Qué es una dirección MAC? ¿En qué se diferencia de una dirección IP?
 
-_Pendiente de completar._
+Una dirección MAC es un identificador físico, único e inalterable grabado en la tarjeta de red del hardware para identificar a un dispositivo a nivel local. Se diferencia de una dirección IP en que esta última es una dirección lógica y jerárquica asignada por software que puede cambiar según la ubicación de la red, sirviendo para el encaminamiento global de datos a través de distintas subredes; mientras que la dirección MAC solo actúa en la capa de enlace para la comunicación directa entre dispositivos adyacentes dentro de la misma red local.
 
 c) ¿Qué es una trama Ethernet? Identificar sus principales campos y explicar brevemente para qué sirve cada uno.
 
