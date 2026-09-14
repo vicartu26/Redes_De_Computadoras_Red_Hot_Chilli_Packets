@@ -33,11 +33,21 @@ _Pendiente de completar._
 
 c) ¿Qué es una trama Ethernet? Identificar sus principales campos y explicar brevemente para qué sirve cada uno.
 
-_Pendiente de completar._
+Una trama Ethernet es la unidad de información digital utilizada en redes LAN para transmitir datos a través de un medio físico compartido. Su función es encapsular los datos procedentes de las capas superiores agregando información de control tanto al principio como al final para gestionar de forma segura el direccionamiento, la sincronización y la detección de errores.
+Principales campos:
+Preámbulo: consiste en un patrón de bits ceros y unos alternados que el receptor utiliza para establecer y asegurar la sincronización de reloj con el emisor.
+SFD: contiene la secuencia de bits específica 10101011. Su función es avisar al receptor del comienzo real de la trama, permitiendo localizar con precisión el primer bit de los campos siguientes.
+DA: identifica la estación física o estaciones a las que va dirigida la trama. Puede ser una dirección de receptor único, de un grupo o una dirección global.
+SA: identifica de manera unívoca la dirección física de la estación emisora que genero y transmitió la trama
+Longitud: tiene doble función dependiendo de la especificación, En la norma IEEE 802.3 representa la longitud del campo de datos en octetos, mientras que en la especificación primitiva de Ethernet representa el tipo de protocolo transportado.
+Datos: container la unidad de datos de protocolo proporcionado por la capa de LLC.
+Relleno: consiste en octetos adicionales agregados únicamente cuando el mensaje es muy corto, para garantizar que la trama alcance una longitud mínima.
+FCS: contiene un código de comprobación de redundancia cíclica de 32 bits calculado sobre todos los campos de la trama (excepto el preámbulo, SFD y FCS). Sirve para que el receptor detecte si la trama sufrió alteraciones o errores durante su tránsito por el canal.
+
 
 d) ¿Qué información permite determinar qué protocolo de capa superior está transportando una trama Ethernet?
 
-_Pendiente de completar._
+El mecanismo para determinar el protocolo de capa superior depende de la especificación con la que trabaje la red. En la especificación primitiva de Ethernet se determina de forma directa mediante el campo Longitud/Tipo. Este valor indica directamente a que protocolo de capa superior se le deben entregar los datos en el destino. En el estándar de la norma IEEE 802.3, como se utiliza para especificar la longitud de los datos, la determinación del protocolo se desplaza al campo de datos de la trama, donde la misma encapsula una cabecera de la capa LLC y dentro de ella los campos DSAP y SSAP contienen las direcciones de punto de acceso al servicio que identifican de manera específica qué protocolo de capas superior es el origen y el destino de la información.
 
 ## Punto 2:
 
