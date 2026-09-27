@@ -6,7 +6,7 @@ CÁTEDRA DE COMPUTACIÓN
 
 ![Escudo UNC](images/image1.png)
 
-**“**Trabajo Práctico N°2: Conceptos fundamentales de capa física y capa de enlace de datos”
+**“Trabajo Práctico N°3: Capas de Enlace de Datos, Red y Transporte”**
 
 Alumnos:  
 Genaro Agustín Mateos Ferrero (19103190)  
