@@ -25,7 +25,7 @@ Comisión: ICOMP24-3
 
 ## Punto 2:
 
-Decidimos omitir en el presente informe los comandos de los puntos a) al f) ya que son mostrados en la misma consigna del trabajo. Al finalizar de realizar las configuraciones correspondientes a los switch, con sus respectivos nombres y contraseñas además de sus VLAN de la tabla de ruteo; testeamos la comunicación entre las computadoras realizando pings. Se muestra el resultado en las capturas de pantalla:
+En el presente informe se omiten los comandos correspondientes a los incisos a al f, dado que ya se encuentran detallados en el enunciado del trabajo práctico. Tras configurar los switches con sus respectivos hostname, credenciales de acceso y la asignación de VLANs según la tabla de ruteo, verificamos la conectividad de extremo a extremo entre los hosts mediante el comando "ping".  Se muestra el resultado en las capturas de pantalla:
 
 ![Diagrama de Red](images/2.jpeg)
 
@@ -35,7 +35,7 @@ Luego creamos las VLAN especificadas en el punto h) y verificamos su correcto fu
 
 ![VLANs](images/2i.png)
 
-Los siguientes pasos constaron en asignar el puerto de la PC A (Fa2/1) a la VLAN 10 "Laboratorio" y cambiar la dirección de IP de la VLAN 1 a la 99 "Management" para que las configuraciones del switch se deban hacer desde allí y quede separado del tráfico de usuarios. Se visualizan ambos cambios en la captura:
+A continuación, la interfaz FastEthernet 2/1 (correspondiente a la PC-A) se asignó a la VLAN 10 (Laboratorio). Posteriormente, se procedió a migrar la interfaz de administración: se removió la dirección IP de la interfaz virtual por defecto (VLAN 1) y se configuró en la interfaz virtual de la VLAN 99 (Management). Este procedimiento permite aislar lógicamente la administración del equipo del tráfico de los usuarios. Se visualizan los cambios en la captura:
 
 ![SW1 Management IP y puerto f2/1 en Lab](images/2l.png)
 
@@ -43,7 +43,7 @@ Repetimos los mismos cambios en el switch 2:
 
 ![SW2 Management IP y puerto f2/1 en Lab](images/2m.png)
 
-Al finalizar estas configuraciones, verificamos que no hay conectividad entre las PCs ni entre los Switch, debido a la separación entre VLANs. Esto es así por más que la PC A y B estén en "Laboratirio", ya que se trata de distintos switches que están conectados por un solo puerto de acceso que sigue utilizando la VLAN 1 por defecto. Para habilitar la comunicación entre computadoras deberíamos tener un enlace troncal entre los switches para soportar el tráfico de múltiples VLAN.
+Al finalizar estas configuraciones, verificamos que no hay conectividad entre las PCs ni entre los Switches, debido a la separación entre VLANs. Aunque la PC-A y la PC-B pertenecenn a la VLAN 10 (Laboratorio), se encuentran en switches distintos cuyo enlace de interconexión opera, por defecto, en la VLAN 1. Para que los paquetes alcancen su destino, es indispensable configurar este enlace en modo troncal (trunk), lo que permitirá etiquetar y transportar el tráfico de múltiples VLANs a través de la misma conexión física.
 
 ![Fallo de ping entre PCs](images/2nPC.png)
 
@@ -51,3 +51,30 @@ Al finalizar estas configuraciones, verificamos que no hay conectividad entre la
 
 ## Punto 3:
 
+El objetivo es separar el tráfico de red de los pasajeros y de la tripulación utilizando VLANs (Redes Virtuales). Esto divide la infraestructura compartida en redes lógicas independientes, permitiendo aplicar distintas reglas de acceso según requiera la aerolínea.
+
+La topología incluye:
+
+- Un servidor local para el sistema de entretenimiento.
+
+- Un switch de acceso que conecta los dispositivos finales a su VLAN correspondiente.
+
+- Un router principal (Gateway) que dirige el tráfico interno y aplica las políticas de seguridad.
+
+- Un router externo que provee la salida a Internet.
+
+<img title="" src="images/DiagramaLogico.png" alt="Diagrama lógico de la red" width="403" data-align="center">
+
+#### Pruebas
+
+- Validación Clase Turista (VLAN 10)
+
+El dispositivo final de la clase Turista es capaz de hacer ping y resolver las peticiones HTTP hacia el servidor de entretenimiento. 
+
+<img title="" src="images/p1.png" alt="PruebaClaseTurista1" width="463" data-align="center">
+
+<img title="" src="images/p2.png" alt="PruebaClaseTurista2" width="520" data-align="center">
+
+Sin embargo, al intentar enviar una solicitud de ping hacia un servidor externo (8.8.8.8) no hay éxito.
+
+<img src="images/p3.png" title="" alt="PruebaClaseTurista3" data-align="center">
