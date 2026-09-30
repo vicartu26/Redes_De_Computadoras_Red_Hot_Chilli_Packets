@@ -78,3 +78,29 @@ El dispositivo final de la clase Turista es capaz de hacer ping y resolver las p
 Sin embargo, al intentar enviar una solicitud de ping hacia un servidor externo (8.8.8.8) no hay éxito.
 
 <img src="images/p3.png" title="" alt="PruebaClaseTurista3" data-align="center">
+
+- Validación Clase Business (VLAN 20)
+
+Desde la PC Business se accede correctamente al servidor de entretenimiento (`http://10.10.99.10`).
+
+![PruebaBusiness1](images/p4.png)
+
+El ping a 8.8.8.8 es exitoso: el router Aircraft aplica NAT con sobrecarga (PAT) y traduce las direcciones de la VLAN 20 a la IP pública `200.0.0.1`.
+
+![PruebaBusiness2](images/p5.png)
+
+- Validación Admin(VLAN 99)
+
+La PC Admin tiene conectividad con Turista, Business, el servidor e Internet (acceso total).
+
+![PruebaAdmin](images/p6.png)
+
+#### Conclusión
+
+#### Conclusión
+
+En este trabajo se realizo la red de un avión donde todos comparten los mismos equipos, pero no todos pueden acceder a las mismas funciones. Usamos VLANs para separar a los pasajeros en tres grupos: Turista, Business y Admin, como si cada grupo tuviera su propia red.
+
+Después controlamos qué puede hacer cada uno. Turista solo puede entrar al servidor de entretenimiento, porque una ACL (una lista de reglas) le bloquea el acceso a Internet. Business puede usar el servidor e Internet, y Admin puede acceder a todo. Para que Business y Admin salgan a Internet usamos NAT, que hace que todos los dispositivos salgan con una única dirección pública.
+
+En sintesis las pruebas salieron como se esperaba: cada grupo puede acceder a lo que le corresponde y nada más.
