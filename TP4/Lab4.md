@@ -21,7 +21,12 @@ Comisión: ICOMP24-3
 
 ## Punto 1:
 
+c) Investigar y resumir el protocolo IEEE 802.1Q. ¿Cómo se relaciona con las VLAN?
+El protocolo IEEE 802.1Q es un mecanismo que permite a múltiples redes compartir de forma transparente el mismo medio físico, sin problemas de interferencia entre ellas. Define el protocolo de encapsulamiento para redes Ethernet, es decir, es el estándar que define el etiquetado de las VLAN en tramas de ethernet.
 
+d) En el contexto de los dos ítems anteriores ¿Qué es el Tagging?
+Tagging es el nombre que recibe el proceso de etiquetado donde se inserta una etiqueta adicional de 4 bytes dentro de la trama original de ethernet para identificar a que VLAN pertenece el paquete.
+De estos 4 bytes, los primeros 2 byets (16 bits) son el identificador de protocolo, los restantes 16 bits se distribuyen de la siguiente manera: 3 bits para la prioridad de la trama, 1 bit indicador de elegilibilidad de descarte en caso de congestion y 12 bits para el identificador de la VLAN, lo que permite soportar hasta 4096 VLAN distintas en una red. 
 
 ## Punto 2:
 
