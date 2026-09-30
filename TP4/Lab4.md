@@ -90,7 +90,7 @@ Desde la PC Business se accede correctamente al servidor de entretenimiento (`ht
 
 ![PruebaBusiness1](images/p4.png)
 
-El ping a 8.8.8.8 es exitoso: el router Aircraft aplica NAT con sobrecarga (PAT) y traduce las direcciones de la VLAN 20 a la IP pública `200.0.0.1`.
+El ping a 8.8.8.8 es exitoso: el router Aircraft aplica NAT con sobrecarga y traduce las direcciones de la VLAN 20 a la IP pública `200.0.0.1`.
 
 ![PruebaBusiness2](images/p5.png)
 
@@ -100,7 +100,6 @@ La PC Admin tiene conectividad con Turista, Business, el servidor e Internet (ac
 
 ![PruebaAdmin](images/p6.png)
 
-#### Conclusión
 
 #### Conclusión
 
