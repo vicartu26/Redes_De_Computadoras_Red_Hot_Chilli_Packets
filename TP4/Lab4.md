@@ -20,6 +20,27 @@ Mariano Stroppa (46309318)
 Comisión: ICOMP24-3 
 
 ## Punto 1:
+a) Investigar cómo se clasifican las redes según su alcance. Mencionar brevemente las características principales de cada una y colocar en cada cuadro de la Figura el acrónimo de red que corresponda.
+
+*PAN (Personal Area Network)* : Tiene un alcance de 10 metros y esta diseñada para los dispositivos de un solo usuario. Ej: Bluetooth, usb
+
+*LAN (Local Area Network)* : Tiene un alcance que va desde algunos metros hasta 1 km, permite compartir recursos a altas velocidades de transferencia y con baja latencia. Ej: Cables Ethernet y wifi domestico
+
+*CAN (Campus Area Network)* : Tiene un alcance desde 1 a 5 km e interconectan varias redes LAN dentro de un area delimitada ,como un campus universitario. Ej: Fibra óptica entre edificios  
+
+*MAN (Metropolitan Area Network)* : Tiene un alcance de hasta 50 km, estas ofrecen cobertura a una area urbana completa interconectando diversas LAN de empresas, instituciones públicas o proveedores de servicios de internet. Ej: Anillos de fibra óptica, redes WiMAX
+
+*WAN (Wide Area Network)* : Su alcance tiene cientos a miles de kilometros (para paises o hasta el planeta entero), Une redes locales dispersas geograficamente a gran escalas, la más grande y conocida es el Internet.Ej :Enlaces satelitales, cables submarinos, fibra óptica transcontinental
+
+2)¿Qué es una vLAN? ¿Cómo se clasifican?
+
+Es el acronimo para "Virtual Local Area Network", como dice el nombre
+ es una red local virtual que permite dividir una red real en subredes logicas independientes por configuracion de switches.
+
+Se clasifican principalmente de dos formas
+ 
+ 1- Por la asignacion de dispositivos: Estática (por puerto),Dinámica (por dirección MAC o IP)
+    2- Por el tipo de trafico: Que pueden ser de datos,voz,administracion y nativa
 
 c) Investigar y resumir el protocolo IEEE 802.1Q. ¿Cómo se relaciona con las VLAN?
 El protocolo IEEE 802.1Q es un mecanismo que permite a múltiples redes compartir de forma transparente el mismo medio físico, sin problemas de interferencia entre ellas. Define el protocolo de encapsulamiento para redes Ethernet, es decir, es el estándar que define el etiquetado de las VLAN en tramas de ethernet.
