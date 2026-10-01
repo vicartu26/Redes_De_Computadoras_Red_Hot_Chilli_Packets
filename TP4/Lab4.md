@@ -105,6 +105,10 @@ Sin embargo, al intentar enviar una solicitud de ping hacia un servidor externo 
 
 <img src="images/p3.png" title="" alt="PruebaClaseTurista3" data-align="center">
 
+#### Análisis de la falta de conectividad a Internet en Clase Turista (VLAN 10):
+El fallo en el envío de paquetes ICMP hacia direcciones públicas de Internet desde los dispositivos de la Clase Turista responde a dos restricciones configuradas intencionalmente en el router principal 1. Bloqueo por Lista de Control de Acceso: En la subinterfaz FastEthernet0/0.10 correspondiente a Turista, se encuentra aplicada una ACL extendida en sentido saliente (out) que deniega explícitamente el tráfico IP proveniente de la red privada 10.10.10.0/24 hacia cualquier otro destino exterior .   
+2. Ausencia de traducción de direcciones (NAT/PAT): La función NAT con sobrecarga en la interfaz de salida hacia el ISP está habilitada únicamente para el rango de la Clase Business (access-list 20 permit 10.10.20.0 0.0.0.255). Al no pertenecer al grupo de NAT, las direcciones IP de la VLAN 10 no pueden traducirse a una IP pública para viajar a través de Internet. 
+
 - Validación Clase Business (VLAN 20)
 
 Desde la PC Business se accede correctamente al servidor de entretenimiento (`http://10.10.99.10`).
