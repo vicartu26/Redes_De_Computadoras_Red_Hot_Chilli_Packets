@@ -22,7 +22,8 @@ Comisión: ICOMP24-3
 ## Punto 1:
 Investigar brevemente y documentar:
 
-a) Pendiente de completar
+a) La ICMP es el protocolo de mensajes de control de Internet (Internet Control Message Protocol). Se utiliza para enviar diagnósticos, mensajes de control y notificaciones de errores entre dispositivos de red.
+No transporta datos de aplicaciones de usuario, sino que sirve exclusivamente para la gestion y diagnostico de la red.
 
 b) Pendiente de completar
 
@@ -72,7 +73,8 @@ a) Pendiente de completar
 
 b) Pendiente de completar
 
-c) Pendiente de completar
+c) El cache ARP es una tabla guardada temporalmente en la memoria RAM del sistema operativo que relaciona las direcciones IP de la red local con sus correspondientes direcciones MAC físicas. La misma existe para optimizar el tráfico de red y evita enviar una solicitud ARP Request por broadcast cada vez que la computadora quiere mandar un paquete a un equipo local con el que ya se comunicó recientemente.
+
 
 d) En la repetición aparecieron ARP en whireshark, sin embargo vemos que no son de nuestra PC hacia el gateway, sino que el router envió su propio request hacia la computadora ("Who has 192.168.1.102? Tell 192.168.1.1"). 
 
