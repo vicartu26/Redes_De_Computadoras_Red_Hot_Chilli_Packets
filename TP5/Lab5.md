@@ -36,12 +36,33 @@ a) Pendiente de completar
 
 b) Pendiente de completar
 
-c) Pendiente de completar
+c) El payload del ping queda dentro de la parte ICMP (Internet Control Message Protocol) en la sección de "Data". 
+
+![Payload ping request](images/payloadRequest.png)
+
+Tiene 32 bytes que contienen el mensaje que se quería transmitir, en este caso es el abecedario llegando hasta la letra "w" y volviendo a comenzar para llegar hasta la letra "i". Al compararlos, vemos que este contenido es igual en el mensaje de reply. 
+
+![Payload ping reply](images/payloadReply.png)
+
+No contamos con ninguna computadora que tenga Linux, pero al investigar aprendimos que el payload podría tener datos distintos ya que es el sistema operativo quien decide qué datos van en el mensaje de ping.
 
 d) Pendiente de completar
 
-e) Pendiente de completar
+e) En whireshark pudimos ver el tamaño de cada encabezado:
 
+![Frame Bytes](images/FrameBytes.png)
+
+![Ethernet Bytes](images/EthernetBytes.png)
+
+![IP Bytes](images/IPBytes.png)
+
+![ICMP Bytes](images/ICMPBytes.png)
+
+![Data Bytes](images/DataBytes.png)
+
+Entonces el dibujo como "cajas dentro de cajas" queda:
+
+![Cajas en cajas](images/1e.jpeg)
 
 ## Punto 2:
 Investigar brevemente:
