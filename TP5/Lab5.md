@@ -73,7 +73,15 @@ b) Pendiente de completar
 
 c) Pendiente de completar
 
-d) Pendiente de completar
+d) En la repetición aparecieron ARP en whireshark, sin embargo vemos que no son de nuestra PC hacia el gateway, sino que el router envió su propio request hacia la computadora ("Who has 192.168.1.102? Tell 192.168.1.1"). 
+
+![Repeticion ping](images/arpNuevas.png)
+
+La falta del request de nuestra computadora al gateway se debe a que quedó guardado en la caché ARP por el ping anterior:
+
+![Caché de ARP](images/arpCache.png)
+
+Entonces la ventaja del caché es que evita enviar un broadcast para comunicarnos con un destino ya conocido. Es bajo la misma lógica que surge el problema: al quedar una entrada vieja, incluso si hay cambios, no se va a hacer un broadcast sino que será utiizada la misma entrada. Los paquetes se enviarán a una dirección incorrecta hasta que la entrada vieja sea actualizada. 
 
 e) Pendiente de completar
 
