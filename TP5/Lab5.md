@@ -25,11 +25,11 @@ Investigar brevemente y documentar:
 a) La ICMP es el protocolo de mensajes de control de Internet (Internet Control Message Protocol). Se utiliza para enviar diagnósticos, mensajes de control y notificaciones de errores entre dispositivos de red.
 No transporta datos de aplicaciones de usuario, sino que sirve exclusivamente para la gestion y diagnostico de la red.
 
-b) Pendiente de completar
+b) El estándar IP especifica que una implementación que cumpla las especificaciones del protocolo debe también implementar ICMP. ICMP esta al mismo nivel que IP en el conjunto de protocolos TCP/IP, pero es en la practica , un usuario de IP, dado que cuando se construye un mensaje de ICMP se pasa por IP para que sea encapsulado y luego transmitido de la forma habitual. El receptor sabe que se trata de un mensaje ICMP porque el campo Protocolo de la cabecera IP indica que el contenido encapsulado corresponde a ICMP
 
-c) Pendiente de completar
+c) Ping genera tráfico mediante el envío de mensajes ICMP Echo Request y la recepción de mensajes ICMP Echo Reply. Echo Request es un paquete que sale desde el emisor para verificar que el receptor esta escuchando. Echo Reply es un mensaje que envia el receptor para confirmar que recibio el mensaje. El campo de ICMP que permite distinguir entre un Echo Request y unEcho Reply es el campo de Tipo
 
-d) Pendiente de completar
+d) Un mensaje ICMP de tipo Echo contiene como mínimo 1 byte de Tipo, 1 byte de Código, 2 bytes de Suma de Comprobación (Checksum), 2 bytes de Identificador y 2 bytes de número de secuencia.
 
 ![Tabla punto 1](images/tabla1.png)
 
