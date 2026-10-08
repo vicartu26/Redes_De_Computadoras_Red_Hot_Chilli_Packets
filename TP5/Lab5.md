@@ -73,9 +73,9 @@ Entonces el dibujo como "cajas dentro de cajas" queda:
 ## Punto 2:
 Investigar brevemente:
 
-a) Pendiente de completar
+a) ARP resuelve el problema de obtener la dirección de MAC de un dispositivo a partir de su dirección de IP, lo cual es esencial para la comunicacion entre dispositivos dentro de una misma red de area local . Lo ubicaria en la capa 2, correspondiente al enlace de datos. Aunque es debatible dado que mapea direcciones correspondientes a la capa 3 de direcciones logicas, con direcciones fisicas de la capa 2.
 
-b) Pendiente de completar
+b) ARP Request es un mensaje de difusión que se envía a toda la red con el objetivo de identificar la dirección de MAC asociada a una dirección IP dada. Una ARP Reply es el proceso inverso, cuando el dispositivo identifica que la IP consultada le pertenece, este responde únicamente al emisor indicándole su dirección MAC.
 
 c) El cache ARP es una tabla guardada temporalmente en la memoria RAM del sistema operativo que relaciona las direcciones IP de la red local con sus correspondientes direcciones MAC físicas. La misma existe para optimizar el tráfico de red y evita enviar una solicitud ARP Request por broadcast cada vez que la computadora quiere mandar un paquete a un equipo local con el que ya se comunicó recientemente.
 
