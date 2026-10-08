@@ -33,7 +33,11 @@ d) Un mensaje ICMP de tipo Echo contiene como mínimo 1 byte de Tipo, 1 byte de 
 
 ![Tabla punto 1](images/tabla1.png)
 
-a) Pendiente de completar
+a) La MAC destino de la 8.8.8.8 no es la MAC de 8.8.8.8, la MAC que vemos pertenece al router zte.
+![](images/imagen1.png)
+Comparandola con la MAC del ping que hicimos al gateway podemos apreciar que resultan que son la misma, ambas pertenecientes al router zte. 
+![](images/imagen.png)
+La conclusion a la que llegamos es que la direccion MAC se manejan unicamente de forma interna dentro de una LAN para identificar dospositivos y no se puede usar para enviar a un dispositivo fuera de la LAN, para esto se usa la ip que tiene un alcance más grande.
 
 b) Pendiente de completar
 
