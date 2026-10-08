@@ -98,7 +98,8 @@ f) Pendiente de completar
 
 a) Pendiente de completar
 
-b) Pendiente de completar
+b) El valor que observamos que tiene le campo type del ARP en el encabezado ethernet es de 0x0806. No hay un encabezado IP luego del Ethernet unicamente hay encabezado ARP. ARP vive en la capa la capa 2, se encapsula directamente en la trama de ethernet, sin llegar ha tener encabezado IP.
+![](images/btt.png)
 
 c) Aparecieron 4 paquetes de solicitud ARP Request
 ![ARP Request](https://github.com/user-attachments/assets/78515921-736d-454d-9ac5-13ccd7e46874)
