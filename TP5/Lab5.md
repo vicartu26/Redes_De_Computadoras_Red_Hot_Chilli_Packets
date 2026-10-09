@@ -81,7 +81,14 @@ c) El cache ARP es una tabla guardada temporalmente en la memoria RAM del sistem
 
 d) Pendiente de completar
 
-e) Pendiente de completar
+e) Observamos desde la caché ARP que la dirección MAC asociada al gateway es 08-f6-06-95-a5-94. 
+
+![Caché de ARP](images/arpCache.png)
+
+Esto coincide con la dirección MAC destino que vimos en el punto 1. Vemos Dst: zte_95:a5:94 donde zte es el prefijo que corresponde a los primeros 6 octetos de la dirección: 08-f6-06. 
+
+![](images/imagen1.png)
+
 
 f) Analizando un ARP Request y su correspondiente ARP Reply, completamos la tabla:
 
