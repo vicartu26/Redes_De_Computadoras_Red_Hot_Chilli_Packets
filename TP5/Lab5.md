@@ -83,7 +83,7 @@ d) Pendiente de completar
 
 e) Pendiente de completar
 
-f) Pendiente de completar
+f) Analizando un ARP Request y su correspondiente ARP Reply, completamos la tabla:
 
 ![Tabla punto 2](images/tabla2.png)
 
@@ -188,6 +188,6 @@ a) -
 
 b) -
 
-c) Pendiente de completar
+c) -
 
 d) Pendiente de completar
