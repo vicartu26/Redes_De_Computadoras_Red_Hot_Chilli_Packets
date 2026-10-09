@@ -79,16 +79,7 @@ b) ARP Request es un mensaje de difusión que se envía a toda la red con el obj
 
 c) El cache ARP es una tabla guardada temporalmente en la memoria RAM del sistema operativo que relaciona las direcciones IP de la red local con sus correspondientes direcciones MAC físicas. La misma existe para optimizar el tráfico de red y evita enviar una solicitud ARP Request por broadcast cada vez que la computadora quiere mandar un paquete a un equipo local con el que ya se comunicó recientemente.
 
-
-d) En la repetición aparecieron ARP en whireshark, sin embargo vemos que no son de nuestra PC hacia el gateway, sino que el router envió su propio request hacia la computadora ("Who has 192.168.1.102? Tell 192.168.1.1"). 
-
-![Repeticion ping](images/arpNuevas.png)
-
-La falta del request de nuestra computadora al gateway se debe a que quedó guardado en la caché ARP por el ping anterior:
-
-![Caché de ARP](images/arpCache.png)
-
-Entonces la ventaja del caché es que evita enviar un broadcast para comunicarnos con un destino ya conocido. Es bajo la misma lógica que surge el problema: al quedar una entrada vieja, incluso si hay cambios, no se va a hacer un broadcast sino que será utiizada la misma entrada. Los paquetes se enviarán a una dirección incorrecta hasta que la entrada vieja sea actualizada. 
+d) Pendiente de completar
 
 e) Pendiente de completar
 
@@ -111,11 +102,15 @@ No hubo ningun ARP Reply ni tampoco se registro ningun paquete ICMP Echo Request
 La ausencia de ARP Reply se debe a que la direccion de IP no esta asignada a ningun equipo activo en la red local, entonces al emitir la solicitud mediante un mensaje a la direccion de difusion, ningun dispositivo reconoce la IP como propia, por lo que nadie responde.
 No se encontro ningun paquete ICMP Echo Request porque para que la computadora pueda transmitir el paquete IP que transporta la solicitud ICMP (capa 3), esta debe encapsularse dentro de una trama de la capa 2 ethernet y para eso debemos conocer la direccion MAC fisica del destino. Como la resolucion de la IP mediante protocolo ARP no obtuvo respuesta, el pila de red del S.O cancela la operacion y nunca llega a tansmitir el paquete a la red.
 
+d) En la repetición aparecieron ARP en whireshark, sin embargo vemos que no son de nuestra PC hacia el gateway, sino que el router envió su propio request hacia la computadora ("Who has 192.168.1.102? Tell 192.168.1.1"). 
 
+![Repeticion ping](images/arpNuevas.png)
 
+La falta del request de nuestra computadora al gateway se debe a que quedó guardado en la caché ARP por el ping anterior:
 
+![Caché de ARP](images/arpCache.png)
 
-d) Pendiente de completar
+Entonces la ventaja del caché es que evita enviar un broadcast para comunicarnos con un destino ya conocido. Es bajo la misma lógica que surge el problema: al quedar una entrada vieja, incluso si hay cambios, no se va a hacer un broadcast sino que será utiizada la misma entrada. Los paquetes se enviarán a una dirección incorrecta hasta que la entrada vieja sea actualizada. 
 
 ## Punto 3:
 Investigar brevemente:
