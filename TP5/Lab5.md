@@ -128,13 +128,60 @@ c) Pendiente de completar
 
 
 
-a) Pendiente de completar
+#### 2. Sección Experimental
 
-b) Pendiente de completar
+ **a) ¿Qué pasó en la red cuando ejecutaron el comando del cliente, antes de escribir el primer mensaje? Compárenlo con TCP.**
+* En TCP (`ncat -v 127.0.0.1 12000`): Al ejecutar el comando en el cliente, la red generó inmediatamente 3 paquetes correspondientes al inicio de conexión (*Three-Way Handshake*: `SYN` $\rightarrow$ `SYN-ACK` $\rightarrow$ `ACK`), estableciendo el canal antes de que el usuario escriba algun mensaje.
+* En UDP (`ncat -v -u 127.0.0.1 12001`): No se generó ningún paquete en la red. UDP es un protocolo no orientado a conexión y no realiza ninguna preparación previa.
 
-c) Pendiente de completar
+> **Imagen asociada:** `Todos_los_paquetes_TCP.png` (Muestra los primeros paquetes con banderas `[SYN]`, `[SYN, ACK]` y `[ACK]`).
+> 
+> ![Three-Way Handshake TCP](images/Todos_los_paquetes_TCP.png)
 
-d) Pendiente de completar
+
+ **b) ¿Cuántos datagramas generó cada mensaje? ¿Hay algo parecido a un ACK?**
+* Cantidad: Cada línea de texto enviada desde la terminal en UDP generó exactamente 1 datagrama independiente en la red.
+* Confirmación: No hay nada parecido a un ACK. UDP no verifica si el paquete llegó a su destino ni solicita confirmaciones de recepción.
+
+> **Imágenes asociadas:** 
+> * `Conversacion_Dos_Terminales_UDP.png` (Muestra el intercambio de mensajes entre terminales).
+> * `UDP_Mensaje_Largo.png` (Muestra cómo cada mensaje produce un único registro/datagrama en Wireshark sin paquetes de confirmación intercalados).
+> 
+> ![Terminales UDP](images/Conversacion_Dos_Terminales_UDP.png)
+> ![Captura UDP](images/UDP_Mensaje_Largo.png)
+
+---
+
+ **c) Comparen el encabezado UDP con el encabezado TCP de un segmento con datos: ¿qué campos tiene cada uno? ¿Cuántos bytes ocupa cada encabezado?**
+
+* Encabezado UDP: Ocupa 8 bytes fijamente y consta de solo 4 campos (de 2 bytes cada uno):
+  1. *Source Port* (Puerto origen)
+  2. *Destination Port* (Puerto destino)
+  3. *Length* (Longitud del datagrama)
+  4. *Checksum* (Suma de comprobación)
+
+* Encabezado TCP: Ocupa 20 bytes (tamaño mínimo sin opciones) e incluye campos orientados al control y la confiabilidad:
+  1. *Source Port* y *Destination Port*
+  2. *Sequence Number* y *Acknowledgment Number* (para ordenamiento y confirmaciones)
+  3. *Header Length*, *Flags* (`SYN`, `ACK`, `PSH`, `FIN`, `RST`), *Window Size* (control de flujo)
+  4. *Checksum* y *Urgent Pointer*.
+
+> **Imágenes asociadas:**
+> * `Paquete_UDP.png` (Detalle del encabezado UDP de 8 bytes).
+> * `Paquetes_TCP_2.png` (Detalle del encabezado TCP de 20 bytes con sus banderas y ventanas).
+> 
+> ![Encabezado UDP](images/Paquete_UDP.png)
+> ![Encabezado TCP](images/Paquetes_TCP_2.png)
+
+---
+
+ **d) ¿Qué pasó en la red al cerrar el cliente con Ctrl+C? ¿Y en TCP?**
+* En UDP: Al presionar `Ctrl+C`, el proceso del cliente se cerró localmente sin generar ningún paquete en la red.
+* En TCP: Al cerrar el cliente se generó el proceso de cierre ordenado (*Four-Way Wavehandshake* o envío de bandera `RST`/`FIN` con sus correspondientes `ACK`), informando a la otra parte que la sesión finalizó.
+
+> **Imagen asociada**: `Mensaje_Cerrando_TCP.png` (Muestra el detalle del paquete de control con banderas de cierre/reseteo `RST, ACK`).
+> 
+> ![Cierre TCP](images/Mensaje_Cerrando_TCP.png)
 
 e) Pendiente de completar
 
