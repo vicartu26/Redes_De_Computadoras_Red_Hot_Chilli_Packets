@@ -107,7 +107,7 @@ b) ARP Request es un mensaje de difusión que se envía a toda la red con el obj
 
 c) El cache ARP es una tabla guardada temporalmente en la memoria RAM del sistema operativo que relaciona las direcciones IP de la red local con sus correspondientes direcciones MAC físicas. La misma existe para optimizar el tráfico de red y evita enviar una solicitud ARP Request por broadcast cada vez que la computadora quiere mandar un paquete a un equipo local con el que ya se comunicó recientemente.
 
-d) Pendiente de completar
+d) Si tenés la IP de una máquina de tu red local, tu equipo primero consulta su tabla de caché ARP para ver si ya tiene guardada la dirección MAC asociada. Si no la encuentra ahí, envía una solicitud por broadcast (ARP Request) a toda la red local preguntando a quién le pertenece esa IP. El dispositivo que reconoce esa IP como suya responde directamente mediante un ARP Reply indicando su MAC. Una vez recibida la respuesta, la computadora guarda ese mapeo en su caché ARP y ya puede encapsular y mandar las tramas Ethernet.
 
 e) Observamos desde la caché ARP que la dirección MAC asociada al gateway es 08-f6-06-95-a5-94. 
 
@@ -156,11 +156,13 @@ Entonces la ventaja del caché es que evita enviar un broadcast para comunicarno
 
 Investigar brevemente:
 
-a) Pendiente de completar
+a) "Establecer una conexión" es el proceso mediante el cual dos extremos inicializan y sincronizan los parámetros necesarios para permitir una transferencia de datos confiable y ordenada mediante el handshake de tres vías (SYN, SYN-ACK, ACK).
+La conexión TCP es un concepto puramente lógico y existe únicamente en los extremos (los hosts/sistemas operativos que se están comunicando). Ni los cables ni los routers intermedios guardan estado ni saben que existe esa conexión TCP; ellos solo se encargan de reenviar datagramas IP de manera independiente.
 
-b) Pendiente de completar
+b) Un puerto es un número de 16 bits (de 0 a 65535) que utiliza el sistema operativo para identificar de forma única a un proceso o aplicación específica dentro de una máquina.   
+El par (IP, puerto) se conoce como endpoint o socket y sirve para identificar unívocamente a una aplicación concreta ejecutándose en un equipo determinado de la red (por ejemplo, 127.0.0.1:12000 identifica al servidor escuchando en esa dirección y puerto). 
 
-c) Pendiente de completar
+c) Que un proceso esté "escuchando" en un puerto significa que le pidió al sistema operativo asociarse a ese número de puerto (vía bind() y listen()) para quedar a la espera pasiva de conexiones entrantes o paquetes. Cuando el SO recibe un paquete dirigido a esa IP y puerto, no lo descarta ni envía un error, sino que se lo entrega directamente a ese programa.
 
 #### 2. Sección Experimental
 
