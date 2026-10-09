@@ -187,7 +187,23 @@ c) Pendiente de completar
 
 e) Pendiente de completar
 
-f) Pendiente de completar
+**f) ¿Y si nadie escucha? Con Wireshark capturando en loopback y el filtro tcp.port == 12000 || udp.port == 12001 || icmp, sin servidores corriendo**
+
+En TCP la conexión falla de inmediato, y sale un mensaje en la terminal:
+
+![TCP terminal error](images/TCPerror.png)
+
+Luego en wireshark observamos que se intenta comenzar el three way handshake con un segmento SYN. Como ningún proceso escucha en ese puerto, el sistema operativo responde con un segmento RST, ACK. Esto se repite varias veces de forma automática intentando establecer conexión.
+
+![TCP whireshark error](images/TCPWSerror.png)
+
+En UDP, como no hay un handshake, no se garantiza la conexión. Se puede enviar un datagrama sin saber si alguien lo recibe:
+
+![UDP terminal error](images/UDPerror.png)
+
+En wireshark podemos ver el datagrama que se envió al puerto 12001. No obtuvimos ninguna respuesta o mensaje de error. En teoría esperaríamos un mensaje ICMP Destination Unreachable (Port Unreachable) pero tampoco es garantizado.
+
+![UDP whireshark error](images/UDPWSerror.png)
 
 ## Punto 4:
 
