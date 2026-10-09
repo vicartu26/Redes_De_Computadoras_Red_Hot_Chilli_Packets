@@ -44,21 +44,17 @@ b)
 
 - Ethernet II: Se invierten las direcciones MAC de origen y destino. No cambia el campo *Type*.
 
-<img src="file:///C:/Users/Genar/OneDrive/Escritorio/Redes_De_Computadoras_Red_Hot_Chilli_Packets/TP5/images/ethernetER.png" title="" alt="ethernetER.png" width="578">
+<img src="images/ethernetER.png" title="" alt="ethernetER.png" width="578"> 
 
-<img src="file:///C:/Users/Genar/OneDrive/Escritorio/Redes_De_Computadoras_Red_Hot_Chilli_Packets/TP5/images/ethernetRep.png" title="" alt="ethernetRep.png" width="579">
+<img src="images/ethernetRep.png" title="" alt="ethernetRep.png" width="579">
 
 - IPv4: Se invierten las direcciones IP de origen y destino. Cambian el *TTL* y el *Header Checksum*. Se mantienen *Version*, *Header Length* y *Protocol*.
 
-<img src="file:///C:/Users/Genar/OneDrive/Escritorio/Redes_De_Computadoras_Red_Hot_Chilli_Packets/TP5/images/ipv4ER.png" title="" alt="ipv4ER.png" width="579">
-
-<img src="file:///C:/Users/Genar/OneDrive/Escritorio/Redes_De_Computadoras_Red_Hot_Chilli_Packets/TP5/images/ipv4Rep.png" title="" alt="ipv4Rep.png" width="579">
+<img src="images/ipv4ER.png" title="" alt="ipv4ER.png" width="579"> <img src="images/ipv4Rep.png" title="" alt="ipv4Rep.png" width="579">
 
 - ICMP: Cambia el campo *Type*, 8 en el Echo Request y 0 en el Reply. Tambien cambia  *Checksum*. No cambian el *Identifier*, el *Sequence Number* y la carga útil (*Payload*).
 
-<img src="file:///C:/Users/Genar/OneDrive/Escritorio/Redes_De_Computadoras_Red_Hot_Chilli_Packets/TP5/images/ICMP_ER.png" title="" alt="ICMP_ER.png" width="583">
-
-<img src="file:///C:/Users/Genar/OneDrive/Escritorio/Redes_De_Computadoras_Red_Hot_Chilli_Packets/TP5/images/ICMP_Rep.png" title="" alt="ICMP_Rep.png" width="587">
+<img src="images/ICMP_ER.png" title="" alt="ICMP_ER.png" width="583"> <img src="images/ICMP_Rep.png" title="" alt="ICMP_Rep.png" width="587">
 
 Razon de los cambios:
 
@@ -89,7 +85,7 @@ e) En whireshark pudimos ver el tamaño de cada encabezado:
 
 ![Frame Bytes](images/FrameBytes.png)
 
-![Ethernet Bytes](images/EthernetBytes.png)
+<img src="images/EthernetBytes.png" alt="EthernetBytes.png">
 
 ![IP Bytes](images/IPBytes.png)
 
@@ -232,8 +228,9 @@ e)
 - **UDP:** 1 paquete para enviar la frase.
 
 - **TCP:** 9 paquetes.        
+  
   - 3 paquetes para el establecimiento de conexión (*Three-Way Handshake*: `SYN`, `SYN-ACK`, `ACK`).
-  -  2 paquetes para la transmisión del mensaje (1 segmento `PSH, ACK` con la frase y 1 `ACK` de confirmación del receptor).
+  - 2 paquetes para la transmisión del mensaje (1 segmento `PSH, ACK` con la frase y 1 `ACK` de confirmación del receptor).
   - 4 paquetes para el cierre elegante de la conexión (`FIN, ACK`, `ACK`, `FIN, ACK`, `ACK`).
 
 Los paquetes adicionales de TCP permiten transformar un canal no confiable (IP) en una comunicación transparente y confiable. Se obtiene:
@@ -274,7 +271,7 @@ c) -
 
 d) 
 
-<img title="" src="file:///C:/Users/Genar/OneDrive/Escritorio/Redes_De_Computadoras_Red_Hot_Chilli_Packets/TP5/images/paquetesPunto4.png" alt="paquetesPunto4.png" width="701">
+<img src="images/paquetesPunto4.png" title="" alt="paquetesPunto4.png" width="701">
 
 | **Llamada**     | **¿Dónde se ejecuta?** | **¿Genera tráfico?** | **Segmentos que observan (Número y Flags)**                       |
 | --------------- | ---------------------- | -------------------- | ----------------------------------------------------------------- |
