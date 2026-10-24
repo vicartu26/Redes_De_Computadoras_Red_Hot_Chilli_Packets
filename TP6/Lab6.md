@@ -48,10 +48,19 @@ Comisión: ICOMP24-3
 
 #### Justificación de Direccionamiento IP (Punto 1.d)
 
-* **IPv4 configurada:** [Indicar IP]
-* **Máscara de subred:** [Indicar Máscara]
-* **Default Gateway:** [Indicar Gateway]
-* **Justificación:** *Explicar el por qué se eligieron estas direcciones y analizar si tuvo o no sentido su configuración manual para el alcance de esta actividad local.*
+* **IPv4 configurada:** 192.168.1.10 y 192.168.1.11
+
+Se optó las direcciones IP correspondientes al espacio de direccionamiento privado establecido por el estándar RFC 1918. Estas direcciones pertenecen a un bloque comúnmente utilizado para redes de área local (LAN) por lo que garantiza que no existan conflictos con direcciones IP públicas.
+
+* **Máscara de subred:** 255.255.255.0
+
+La configuración de esta máscara indica que los primeros tres octetos corresponden a la porción de red y el último octeto a la porción de host. Al aplicar esta misma máscara en ambas computadoras, las dos direcciones IP quedan lógicamente ubicadas dentro de la misma subred. Esto es fundamental porque le indica a la pila TCP/IP de cada computadora que el equipo de destino se encuentra en el mismo segmento de red local. Como resultado, las computadoras pueden comunicarse directamente en la capa de enlace de datos (Capa 2) resolviendo sus direcciones MAC mediante el protocolo ARP a través del switch, sin requerir un enrutador el cual no se disponía en el laboratorio.
+
+* **Default Gateway:** Ninguna
+
+Se decidió no configurar ninguna puerta de enlace predeterminada ya que solo se utiliza cuando un host necesita enviar paquetes a una dirección IP que se encuentra fuera de su propia subred. Dado que el alcance de esta actividad consistía en comunicar únicamente a dos equipos conectados físicamente al mismo switch en una LAN aislada, todo el tráfico generado tenía un destino estrictamente local. En pocas palabras, configurar un gateway hubiera sido redundante e innecesario para los fines de este laboratorio.
+
+
 
 #### Captura de Tráfico UDP (Punto 4)
 
@@ -62,23 +71,13 @@ Comisión: ICOMP24-3
 
 * **a) ¿Se observa algún procedimiento de establecimiento de conexión antes de enviar los datos?**
 
-
-
 * **b) ¿Existe algún mecanismo de confirmación de recepción equivalente a los ACK de TCP?**
-
-
 
 * **c) ¿Qué ocurre si se envían mensajes mientras el receptor UDP no está ejecutándose?**
 
-
-
 * **d) ¿UDP garantiza que los mensajes lleguen en el mismo orden en que fueron enviados?**
 
-
-
 * **e) ¿Qué aplicaciones reales utilizan UDP y por qué?**
-
-
 
 ---
 
@@ -88,5 +87,3 @@ Comisión: ICOMP24-3
 
 * **Captura en Wireshark (Descarga HTTP/curl):** [Insertar imagen de la captura del tráfico generado al bajar el archivo del servidor Python]
 * **Tipo de tráfico observado:** *[Explicar qué protocolo de la capa de transporte (TCP) se está utilizando para esta transmisión, identificando el Three-Way Handshake, ACKs, etc., y comparándolo con el comportamiento visto anteriormente en UDP].*
-  
-  
