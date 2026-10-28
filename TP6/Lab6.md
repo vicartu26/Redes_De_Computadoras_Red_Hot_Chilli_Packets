@@ -123,7 +123,7 @@ Se decidió no configurar ninguna puerta de enlace predeterminada ya que solo se
 
 #### Captura de Tráfico UDP (Punto 4)
 
-* **Captura en Wireshark:** [Insertar captura de pantalla de los paquetes recibidos con Ncat]
+* **Captura en Wireshark:**  ![Captura de WireShark de paquetes UDP enviados por ncat](images/Punto_4_UDP.png)
 * **Análisis de la captura:** *Documentar los detalles observados (direcciones IP de origen y destino, puertos utilizados, longitud, etc.).*
 
 #### Cuestionario sobre UDP (Punto 5)
@@ -144,5 +144,6 @@ Se decidió no configurar ninguna puerta de enlace predeterminada ya que solo se
 
 ### 3.1 Análisis de tráfico web (Punto 4)
 
-* **Captura en Wireshark (Descarga HTTP/curl):** [Insertar imagen de la captura del tráfico generado al bajar el archivo del servidor Python]
+* **Captura en Wireshark (Descarga HTTP/curl):** ![Captura de WireShark de tráfico generado por el servidor](images/Punto_4_servidor_http.png)
+
 * **Tipo de tráfico observado:** *[Explicar qué protocolo de la capa de transporte (TCP) se está utilizando para esta transmisión, identificando el Three-Way Handshake, ACKs, etc., y comparándolo con el comportamiento visto anteriormente en UDP].*
