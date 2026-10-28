@@ -4,18 +4,17 @@ FACULTAD DE CIENCIAS EXACTAS, FÍSICAS, Y NATURALES
 
 CÁTEDRA DE COMPUTACIÓN
 
-![Escudo UNC](C:/Users/Genar/Desktop/Redes_De_Computadoras_Red_Hot_Chilli_Packets/TP5/images/image1.png)
+![Escudo UNC](images/image1.png)
 
 **“Trabajo Práctico N°6: Capa Física y de Red”**
 
 Alumnos:  
-
-Eliezer Flores (45172399)
+Eliezer Flores (45172399)  
 Genaro Agustín Mateos Ferrero (19103190)    
 Victor José Arturo Castro (46522607)  
 Tiziano Quevedo (44972730)  
 Gonzalo del Cotillo (43216694)  
-Mariano Stroppa (46309318)
+Mariano Stroppa (46309318)  
 Angélica Moisés (46765089)
 
 Comisión: ICOMP24-3 
@@ -64,6 +63,7 @@ Cabe destacar que durante el armado del cable tuvimos ciertas complicaciones que
 
 * **Aspectos negativos**
   * Los conductores entran al conector en un leve abanico en lugar de completamente paralelos, lo que indica que podrían haberse alineado mejor antes de insertarlos.
+  * Al habernos topado con problemas, tuvimos que re-hacer más de una vez las puntas después del crimpado, lo cual implica recortar el cable. Esto lo deja con un tamaño desfavorable para conexiones con un switch más lejano. Si bien no nos dificultó el procedimiento de este laboratorio, debería ser tomado en cuenta como crítica.
 
 * **Justificación fotográfica:**
 
