@@ -25,13 +25,15 @@ Comisión: ICOMP24-3
 
 *Averigüen su IP y su máscara (ipconfig / ip addr) y calculen la dirección de broadcast de la red. ¿Cuál es la dirección MAC de broadcast?*
 
-- **Dirección IP local:** [Completar aquí]
+![Screenshot IP config cmd](images/image4.png)
 
-- **Máscara de subred:** [Completar aquí]
+- **Dirección IP local:** 192.168.0.135
 
-- **Dirección de broadcast de la red:** [Completar aquí]
+- **Máscara de subred:** 255.255.255.0
 
-- **Dirección MAC de broadcast:** [Completar aquí]
+- **Dirección de broadcast de la red:** Para calcularla hacemos IP local OR (NOT) máscara de subred. Entonces como la máscara es 255.255.255.0, haciendo NOT queda 0.0.0.255 y haciendo el OR: (192.168.0.135) OR (0.0.0.255) = 192.168.0.255
+
+- **Dirección MAC de broadcast:** FF:FF:FF:FF:FF:FF
 
 ### Consigna 2
 
