@@ -164,7 +164,23 @@ Para esta actividad se utilizó el puerto 5051 en lugar del 5000 indicado en la 
 
 * **b) ¿Existe algún mecanismo de confirmación de recepción equivalente a los ACK de TCP?**
 
+* No. UDP es un protocolo de transporte no orientado a conexión que proporciona un servicio de entrega no fiable o de "mejor esfuerzo" (*best-effort*). A nivel de transporte, UDP no incluye confirmaciones de recepción (ACK), números de secuencia, retransmisiones, ni mecanismos de control de flujo o congestión. El emisor transmite el datagrama y no recibe ninguna señal sobre si el paquete llegó a su destino, si se perdió en la red o si llegó desordenado.
+
+Lo único que incorpora la cabecera UDP es un campo de *checksum* (opcional en IPv4, obligatorio en IPv6) para verificar la integridad del datagrama. Si el receptor detecta un error mediante la suma de comprobación, descarta el datagrama en silencio, sin enviar ningún aviso al emisor.
+
+- **Verificación en Wireshark:** al capturar el tráfico generado por `ncat` sobre UDP, se observa un flujo unidireccional de paquetes (emisor → receptor) sin ningún paquete de respuesta o confirmación del receptor. Esto contrasta con TCP, donde cada segmento con datos provoca la devolución de un segmento con el indicador ACK activado.
+- **Fiabilidad en capa superior:** si una aplicación basada en UDP requiere garantías de entrega o control de errores, estos mecanismos deben implementarse explícitamente en la capa de aplicación (como hacen protocolos como TFTP o QUIC).
+
 * **c) ¿Qué ocurre si se envían mensajes mientras el receptor UDP no está ejecutándose?**
+
+* Los mensajes se pierden silenciosamente a nivel de la aplicación emisora, ya que el proceso emisor (`ncat`) no recibe una retroalimentación inmediata que le impida seguir aceptando texto.
+
+El proceso que ocurre internamente en la red es el siguiente:
+
+1. El paquete IP que transporta el datagrama UDP llega a la máquina destino porque la dirección IP es alcanzable en la red.
+2. La capa de transporte del host receptor examina el puerto de destino (ej. 5000) y comprueba que no existe ningún socket o proceso a la escucha en ese puerto.
+3. Al no encontrar un puerto activo, la pila de red del host destino genera y devuelve un mensaje de control **ICMP "Destination Unreachable / Port Unreachable" (Tipo 3, Código 3)** dirigido al emisor.
+4. Aunque la máquina emisora recibe el mensaje ICMP en la capa de red, UDP no realiza retransmisiones ni gestiona la recuperación del mensaje original, que se da por perdido. Dependiendo del sistema operativo y de la implementación de sockets, la recepción de este ICMP puede provocar que el emisor muestre un error asíncrono del tipo *"Connection refused"* al intentar un envío posterior, pero el mensaje original ya fue descartado.
 
 * **d) ¿UDP garantiza que los mensajes lleguen en el mismo orden en que fueron enviados?**
 
