@@ -168,8 +168,15 @@ Para esta actividad se utilizó el puerto 5051 en lugar del 5000 indicado en la 
 
 * **d) ¿UDP garantiza que los mensajes lleguen en el mismo orden en que fueron enviados?**
 
+  No, UDP no garantiza que los mensajes lleguen en el mismo orden en que fueron enviados. UDP es un protocolo no orientado a la conexión que opera bajo el principio de "mejor esfuerzo" (best-effort) y no ofrece ningún mecanismo para preservar el orden secuencial de la información transmitida. Al transmitirse a través del protocolo IP, cada datagrama se trata de manera independiente y puede tomar rutas distintas o experimentar variaciones en los tiempos de espera dentro de los búferes de los enrutadores. Por ello, los paquetes pueden llegar desordenados, duplicados o perderse.
+
 * **e) ¿Qué aplicaciones reales utilizan UDP y por qué?**
 
+  Las aplicaciones utilizan UDP principalmente porque requiere muy poca sobrecarga en sus encabezados (solo 8 bytes frente a los 20 bytes de TCP) y evita los retardos asociados a la negociación de conexión (three-way handshake) y a las retransmisiones de TCP.
+  Algunas aplicaciones que utilizan UDP son:
+  DNS: Realiza consultas y respuestas breves mediante el puerto 53. Utiliza UDP para agilizar la resolución de nombres evitando el retardo del establecimiento de conexión de TCP. Si se pierde un paquete, la aplicación cliente simplemente vuelve a enviar la solicitud.
+  Servicios de Voz sobre IP (VoIP) y Videoconferencias: Herramientas como la telefonía por Internet emplean UDP porque requieren un retardo mínimo y constante para la comunicación interactiva. Estas aplicaciones toleran la pérdida de una pequeña cantidad de datos, mientras que los mecanismos de retransmisión de TCP provocarían pausas y latencias inaceptables.
+Transmisión de contenido multimedia (Streaming en tiempo real): El flujo de audio y video en vivo se beneficia de UDP al evitar que los mecanismos de control de congestión de TCP reduzcan drásticamente la velocidad de transmisión ante pérdidas puntuales de paquetes.
 ---
 
 ## Parte 3: Desarrollar un pequeño servidor
