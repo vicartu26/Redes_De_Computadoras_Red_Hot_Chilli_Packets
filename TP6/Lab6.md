@@ -124,11 +124,43 @@ Se decidió no configurar ninguna puerta de enlace predeterminada ya que solo se
 #### Captura de Tráfico UDP (Punto 4)
 
 * **Captura en Wireshark:**  ![Captura de WireShark de paquetes UDP enviados por ncat](images/Punto_4_UDP.png)
-* **Análisis de la captura:** *Documentar los detalles observados (direcciones IP de origen y destino, puertos utilizados, longitud, etc.).*
+* **Análisis de la captura:** #### Captura de Tráfico UDP (Punto 4)
+
+Para esta actividad se utilizó el puerto 5051 en lugar del 5000 indicado en la guía. El receptor (192.168.1.10) escuchaba con ncat en modo UDP y el otro grupo (192.168.1.11) enviaba mensajes. La captura se realizó con Wireshark en la interfaz Ethernet del receptor.
+
+* **Captura en Wireshark:**
+
+  ![Captura de Wireshark de paquetes UDP enviados por ncat](images/Punto_4_UDP.png)
+  *Figura 7: Captura de los datagramas UDP enviados desde 192.168.1.11 a 192.168.1.10 (puerto 5051).*
+
+* **Análisis de la captura:**
+
+  En total se registraron 23 paquetes. Los paquetes 9 a 21 son datagramas UDP y los dos últimos (22 y 23) son ARP.
+
+  | Campo | Valor observado |
+  |:---|:---|
+  | IP origen | 192.168.1.11 |
+  | IP destino | 192.168.1.10 |
+  | Puerto origen | 65346 (efímero, asignado por el SO del emisor) |
+  | Puerto destino | 5051 (puerto en el que escuchaba el receptor) |
+  | Longitud del payload | 3 bytes (el paquete 11 tiene 4 bytes) |
+  | Sentido | Unidireccional (.11 → .10), sin respuestas del receptor |
+
+  **Detalle del paquete 18 (seleccionado):**
+  * **Trama:** 60 bytes (480 bits), el mínimo de Ethernet: 14 bytes de encabezado Ethernet, 31 de paquete IP y 15 de relleno (*padding*) en ceros.
+  * **Ethernet II:** MAC origen 7c:c2:c6:30:53:e3, MAC destino 14:cb:19:ce:5f:a7, tipo 0x0800 (IPv4).
+  * **IPv4:** longitud total 31 bytes (20 de encabezado IP + 8 de UDP + 3 de datos), TTL 128, protocolo 17 (UDP).
+  * **UDP:** puerto origen 65346, puerto destino 5051, longitud 11 bytes (8 de encabezado + 3 de datos), checksum 0xec66.
+  * **Datos:** 3 bytes, `73 0d 0a`: el carácter "s" seguido de salto de línea (CR+LF), que ncat agrega al presionar Enter. El paquete 11 (Len=4) corresponde a un mensaje de dos caracteres más CR+LF.
+
+
+
 
 #### Cuestionario sobre UDP (Punto 5)
 
 * **a) ¿Se observa algún procedimiento de establecimiento de conexión antes de enviar los datos?**
+ 
+    No observamos ningun procedimiento de establecimiento de conexion previo a enviar datos.En UDP el emisor envía los datagramas directamente sin establecer una conexión previa, sin intercambio de SYN/SYN-ACK/ACK a diferencia de TCP.
 
 * **b) ¿Existe algún mecanismo de confirmación de recepción equivalente a los ACK de TCP?**
 
