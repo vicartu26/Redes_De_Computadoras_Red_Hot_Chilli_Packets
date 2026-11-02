@@ -37,13 +37,18 @@ Comisión: ICOMP24-3
 
 *Abran Wireshark en la interfaz Wi-Fi y capturen al menos 2 minutos.*
 
-- **Captura:** [Indicar aquí el nombre del archivo `.pcapng` o captura de pantalla que se adjunta con este informe]
+- **Captura:** Adjuntamos dos archivos de capturas de wireshark bajo los nombres "TP7-captura1.pcapng" y "TP7-captura2.pcapng" en la carpeta titulada "Capturas wireshark". A su vez, para mejor visualización en este informe, mostramos capturas de pantalla de algunos paquetes:
+
+![Ejemplo 1 paquete](images/image2.png)
+
+![Ejemplo 2 paquete](images/image3.png)
 
 ### Consigna 3
 
 *Analicen la estructura del mensaje. ¿Qué formato tiene? ¿Qué campos contiene y qué creen que representa cada uno? Propongan cómo hay que interpretar los datos.*
 
-- **Formato de la carga útil:** [Ej. JSON]
+- **Formato de la carga útil:** 
+El formato de la carga útil es explicitado en la consigna de este trabajo, donde se aclara que se trata de un JSON de forma {"SIZE": "FILAS, COLUMNAS", ???????}.
 
 - **Análisis de los campos:**
   
