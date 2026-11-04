@@ -50,7 +50,7 @@ Comisión: ICOMP24-3
 *Analicen la estructura del mensaje. ¿Qué formato tiene? ¿Qué campos contiene y qué creen que representa cada uno? Propongan cómo hay que interpretar los datos.*
 
 - **Formato de la carga útil:** 
-El formato de la carga útil es explicitado en la consigna de este trabajo, donde se aclara que se trata de un JSON de forma {"SIZE": "FILAS, COLUMNAS", ???????}.
+  El formato de la carga útil es explicitado en la consigna de este trabajo, donde se aclara que se trata de un JSON de forma {"SIZE": "FILAS, COLUMNAS", ???????}.
 
 - **Análisis de los campos:**
   
@@ -61,20 +61,57 @@ El formato de la carga útil es explicitado en la consigna de este trabajo, dond
   - `CHECK`: Este campo también es compuesto de unos y ceros que representan los bits de paridad, primero de las filas (de arriba a abajo) y luego de las columnas (de izquierda a derecha). 
 
 - **Interpretación de los datos:** Al captar un paquete debemos armar la matriz de datos para poder utilizar el código "paridad.py" y ver los bits de paridad que devuelve para las filas y columnas. Entonces podremos detectar errores comparando con los bits de paridad otorgados en el campo CHECK.
-Para armar la matriz, primero se debe leer el campo SIZE para poder ordenar los bits de datos del campo PL. Tomamos en cuenta que se nos dice el número de filas N y de columnas M, pero para estas últimas se habla de 7 "bits" en cada una ya que se interpreta como un caracter ASCII. Entonces podemos copiar desde wireshark el campo PL, pegarlo en un archivo de texto y separar en N columnas de 7 bits debeiendo quedar M filas. 
-Aquí solo queda realizar la detección y corrección de errores como ya se mencionó antes; utilizamos "paridad.py" y comparamos sus resultados con los datos del campo CHECK. Al finalizar, habiendo cambiado los bits necesarios, pudimos reconstruir el mensaje original y decodificando en ASCII con "decodificar_mensaje.py" sabremos exactamente qué decía.
+  Para armar la matriz, primero se debe leer el campo SIZE para poder ordenar los bits de datos del campo PL. Tomamos en cuenta que se nos dice el número de filas N y de columnas M, pero para estas últimas se habla de 7 "bits" en cada una ya que se interpreta como un caracter ASCII. Entonces podemos copiar desde wireshark el campo PL, pegarlo en un archivo de texto y separar en N columnas de 7 bits debeiendo quedar M filas. 
+  Aquí solo queda realizar la detección y corrección de errores como ya se mencionó antes; utilizamos "paridad.py" y comparamos sus resultados con los datos del campo CHECK. Al finalizar, habiendo cambiado los bits necesarios, pudimos reconstruir el mensaje original y decodificando en ASCII con "decodificar_mensaje.py" sabremos exactamente qué decía.
 
 ### Consigna 4
 
 *Verifiquen la integridad del mensaje con el código de la sección 1: recalculen las paridades y compárenlas con las recibidas. Registren qué filas y qué columnas fallan (el síndrome).*
 
-- **Matriz analizada (SIZE [X,Y]):** [Opcional: Pegar la matriz de bits extraída aquí]
+#### Análisis de Payload 1
 
-- **Paridad de filas (Calculada vs Recibida):** [Detallar si hay diferencias]
+- **Matriz analizada (SIZE [8, 7]):** El mensaje original de 392 bits se organizó en una matriz bidimensional de 8 filas por 49 columnas (representando 7 caracteres ASCII de 7 bits por cada fila).
+- **Paridad de filas:** Al comparar contra los bits de control del campo CHECK, se detectaron discrepancias en las filas 4, 5 y 6 (el índice comienza desde 0).
+- **Paridad de columnas** Existen diferencias en las columnas 8, 16 y 22.
+- **Síndrome detectado:** El cruce de paridades indica errores simultáneos en las intersecciones de las **filas 4, 5 y 6** con las **columnas 8, 16 y 22**.
 
-- **Paridad de columnas (Calculada vs Recibida):** [Detallar si hay diferencias]
+**Evidencia Payload 1:**
 
-- **Síndrome detectado:** [Indicar qué filas y columnas exactas fallan]
+Mensaje con errores:
+<img title="" src="images/P1ConErrores.png" alt="Texto con errores P1" width="450" data-align="center">
+Matriz de paridad:
+<img title="" src="images/P1MatrizConErrores.png" alt="Matriz de paridad P1" data-align="center" width="481">Detección de errores:
+![Detección de errores P1](images/P1DeteccionDeErrores.png)
+
+---
+
+#### Análisis de Payload 2
+
+- **Matriz analizada (SIZE [10, 42]):** El segundo mensaje, de 420 bits, fue estructurado en 10 filas por 42 columnas (6 caracteres ASCII por fila).
+- **Paridad de filas (Calculada vs Recibida):** El cálculo local arrojó discrepancias con el control recibido en las filas 0, 4, 5 y 7.
+- **Paridad de columnas (Calculada vs Recibida):** Se detectaron discrepancias en las columnas 2, 11, 17 y 24.
+- **Síndrome detectado:** El análisis expone un síndrome de error múltiple que afecta las coordenadas donde se cruzan las **filas 0, 4, 5 y 7** y las **columnas 2, 11, 17 y 24**.
+
+**Evidencia Payload 2:**
+Mensaje con errores:
+<img title="" src="images/P2ConErrores.png" alt="Texto con errores P2" data-align="center" width="493">Matriz de paridad:
+<img title="" src="images/P2MatrizConErrores.png" alt="Matriz de paridad P2" data-align="center" width="397">Detección de errores:
+<img title="" src="images/P2DeteccionDeErrores.png" alt="Detección de errores P2" data-align="center" width="666">
+
+---
+
+#### Análisis de Payload 3
+
+- **Matriz analizada (SIZE [4, 28]):** El tercer mensaje consta de 112 bits, divididos en 4 filas por 28 columnas.
+- **Paridad de filas:** Todas las filas presentan discrepancias matemáticas respecto al control (filas 0, 1, 2 y 3).
+- **Paridad de columnas (Calculada vs Recibida):** Fallan las columnas 6, 10, 14 y 19.
+- **Síndrome detectado:** Existe una ambigüedad masiva. El síndrome abarca la totalidad de las filas (**0, 1, 2 y 3**) y las columnas **6, 10, 14 y 19**. Al existir 4 filas y 4 columnas afectadas, la paridad bidimensional genera múltiples combinaciones posibles (24 combinaciones) que comparten el mismo síndrome, demostrando que en fallos múltiples se requiere del contexto semántico (tabla ASCII) para resolver la corrección.
+
+**Evidencia Payload 3:**
+Mensaje con errores:
+<img title="" src="images/P3ConErrores.png" alt="Texto con errores P3" data-align="center" width="454">Matriz de paridad:
+<img title="" src="images/P3MatrizConErrores.png" alt="Matriz de paridad P3" data-align="center" width="325">Detección de errores:
+<img title="" src="images/P3DeteccionDeErrores.png" alt="Detección de errores P3" data-align="center" width="665">
 
 ### Consigna 5
 
