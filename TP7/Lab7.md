@@ -124,6 +124,35 @@ Mensaje con errores:
 
 *(Nota: Si analizaron más de un mensaje distinto, replicar esta tabla por cada mensaje)*
 
+#### Payload 1 (matriz 8 × 49)
+ 
+| **Fila** | **Columna** | **Valor Recibido** | **Valor Corregido** | **Carácter afectado** |
+| -------- | ----------- | ------------------ | ------------------- | --------------------- |
+| 4        | 8           | 1                  | 0                   | `w` → `W`             |
+| 5        | 16          | 0                  | 1                   | `$` → `4`             |
+| 6        | 22          | 0                  | 1                   | `E` → `e`             |
+
+
+#### Payload 2 (matriz 10 × 42)
+ 
+| **Fila** | **Columna** | **Valor Recibido** | **Valor Corregido** | **Carácter afectado** |
+| -------- | ----------- | ------------------ | ------------------- | --------------------- |
+| 0        | 2           | 1                  | 0                   | `x` → `h`             |
+| 4        | 11          | 1                  | 0                   | `w` → `s`             |
+| 5        | 17          | 1                  | 0                   | `}` → `u`             |
+| 7        | 24          | 1                  | 0                   | `m` → `e`             |
+
+
+#### Payload 3 (matriz 4 × 28)
+ 
+| **Fila** | **Columna** | **Valor Recibido** | **Valor Corregido** | **Carácter afectado** |
+| -------- | ----------- | ------------------ | ------------------- | --------------------- |
+| 0        | 6           | 1                  | 0                   | `Q` → `P`             |
+| 1        | 10          | 1                  | 0                   | `8` → `0`             |
+| 2        | 14          | 1                  | 0                   | `p` → `0`             |
+| 3        | 19          | 1                  | 0                   | `g` → `e`             |
+ 
+
 ### Consigna 6
 
 *Construyan un archivo de texto en el formato de mensaje.txt con los datos ya corregidos y decodifíquenlo con decodificar_mensaje.py.*
