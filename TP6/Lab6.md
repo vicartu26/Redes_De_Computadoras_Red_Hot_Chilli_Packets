@@ -203,19 +203,19 @@ Transmisión de contenido multimedia (Streaming en tiempo real): El flujo de aud
 
 * **Tipo de tráfico observado:**
 
-Para el intercambio de datos web en esta actividad, observamos la utilización del protocolo TCP en la capa de transporte[cite: 16], el cual sirve de soporte a la capa de aplicación (HTTP).
+Para el intercambio de datos web en esta actividad, observamos la utilización del protocolo TCP en la capa de transporte, el cual sirve de soporte a la capa de aplicación (HTTP).
 
-A diferencia del comportamiento sin conexión que analizamos previamente en UDP (Parte 2)[cite: 15, 16], TCP es un protocolo **orientado a la conexión, confiable y con control de flujo**[cite: 14, 16], lo que se evidencia en el análisis de los paquetes capturados:
+A diferencia del comportamiento sin conexión que analizamos previamente en UDP, TCP es un protocolo **orientado a la conexión, confiable y con control de flujo**, lo que se evidencia en el análisis de los paquetes capturados:
 
 1. **Establecimiento de conexión (Three-Way Handshake):**
-   Antes de iniciar la transferencia del recurso web, la sesión requiere una negociación previa en tres pasos[cite: 14, 16] para sincronizar los números de secuencia iniciales y establecer el estado de la conexión (`ESTABLISHED`) entre el cliente (`192.168.1.11`) y el servidor (`192.168.1.10`).
+   Antes de iniciar la transferencia del recurso web, la sesión requiere una negociación previa en tres pasos para sincronizar los números de secuencia iniciales y establecer el estado de la conexión (`ESTABLISHED`) entre el cliente (`192.168.1.11`) y el servidor (`192.168.1.10`).
 
 2. **Transferencia de datos HTTP y acuses de recibo (ACKs):**
    * En el paquete 1572 registramos la respuesta del servidor mediante el mensaje `HTTP/1.0 200 OK (PNG)`, donde se transfiere el archivo de imagen solicitado.
-   * En los paquetes 1573 y 1574 observamos los segmentos `ACK` enviados por el cliente (`192.168.1.11`) hacia el servidor (`192.168.1.10:8081`). Estos confirmatorios permiten validar la recepción continua de los bytes transmitidos y garantizar la entrega sin pérdidas[cite: 14, 16].
+   * En los paquetes 1573 y 1574 observamos los segmentos `ACK` enviados por el cliente (`192.168.1.11`) hacia el servidor (`192.168.1.10:8081`). Estos confirmatorios permiten validar la recepción continua de los bytes transmitidos y garantizar la entrega sin pérdidas.
 
 3. **Cierre de sesión y mantenimiento (FIN / Keep-Alive):**
-   * En el paquete 1575 se observa el envío del flag `FIN, ACK` desde el cliente para solicitar la fiscalización ordenada del canal de comunicación[cite: 14, 16], el cual es respondido inmediatamente por el servidor en el paquete 1576 con un `ACK`.
+   * En el paquete 1575 se observa el envío del flag `FIN, ACK` desde el cliente para solicitar la fiscalización ordenada del canal de comunicación, el cual es respondido inmediatamente por el servidor en el paquete 1576 con un `ACK`.
    * En los paquetes 1577 a 1580 se registran tramas de `TCP Keep-Alive` y sus respectivas respuestas `Keep-Alive ACK`, mecanismo empleado para verificar de forma periódica si el socket remoto continúa activo.
    * Finalmente, en los paquetes 1581 y 1582 se registra tráfico ARP de consulta y respuesta para verificar la resolución de direcciones MAC en la LAN.
 
@@ -223,7 +223,7 @@ A diferencia del comportamiento sin conexión que analizamos previamente en UDP 
 
 | Característica | Tráfico UDP (Parte 2) | Tráfico TCP / HTTP (Parte 3) |
 | :--- | :--- | :--- |
-| **Conexión previa** | Sin conexión previa (*Connectionless*). Envío directo de datagramas[cite: 15, 16]. | Orientado a conexión. Requiere *Three-Way Handshake* previo[cite: 14, 16]. |
-| **Confirmación (ACK)** | Inexistente a nivel de transporte[cite: 15, 16]. | Cada bloque de datos es confirmado mediante segmentos `ACK`[cite: 14, 16]. |
-| **Orden de entrega** | No garantiza el orden de llegada[cite: 16]. | Reordena los paquetes mediante números de secuencia (`Seq` / `Ack`)[cite: 15, 16]. |
-| **Finalización** | Sin procedimiento de cierre[cite: 15, 16]. | Cierre explícito del socket mediante banderas `FIN` y `ACK`[cite: 14, 16]. |
+| **Conexión previa** | Sin conexión previa (*Connectionless*). Envío directo de datagramas. | Orientado a conexión. Requiere *Three-Way Handshake* previo. |
+| **Confirmación (ACK)** | Inexistente a nivel de transporte. | Cada bloque de datos es confirmado mediante segmentos `ACK`. |
+| **Orden de entrega** | No garantiza el orden de llegada. | Reordena los paquetes mediante números de secuencia (`Seq` / `Ack`). |
+| **Finalización** | Sin procedimiento de cierre. | Cierre explícito del socket mediante banderas `FIN` y `ACK`. |
