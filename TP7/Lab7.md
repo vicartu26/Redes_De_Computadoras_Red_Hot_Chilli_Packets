@@ -189,7 +189,11 @@ Mensaje con errores:
 
 *¿Pudieron confirmar que su corrección es correcta? ¿Cómo?*
 
-- **Método de confirmación:** [Explicar cómo validaron que la corrección fue exitosa más allá de que el texto final tuviera sentido]
+Sí, pudimos validar que la corrección fue exitosa de forma objetiva y formal, más allá de que el texto final decodificado fuera legible en español, aplicando las siguientes verificaciones técnicas:
+
+- **Recálculo de la matriz de paridad (Síndrome nulo)**: Reejecutamos el script paridad.py utilizando como entrada la matriz con los bits de datos ya corregidos. Al comparar nuevamente las paridades de filas y columnas calculadas de la nueva matriz contra los vectores de control originales recibidos en el campo CHECK, el resultado arrojó un síndrome nulo (cero discrepancias). Esto demuestra matemáticamente que la matriz corregida satisface al 100% las ecuaciones de paridad del esquema bidimensional.
+
+- **Verificación sintáctica del código ASCII y JSON**: Comprobamos que cada bloque de 7 bits resultante perteneciera al rango de caracteres ASCII imprimibles y respetara la estructura JSON exigida por la consigna ({"SIZE": ...}). En escenarios con síndromes ambiguos (como ocurrió en el Payload 3, donde la falla cruzada de 4 filas y 4 columnas generaba múltiples combinaciones matemáticamente válidas), este criterio permitió descartar de forma inequívoca las soluciones que producían símbolos no imprimibles o combinaciones inválidas en la sintaxis.
 
 ### Reflexión 4
 
