@@ -239,5 +239,50 @@ Sí, pudimos validar que la corrección fue exitosa de forma objetiva y formal, 
 *Investigar y describir con el mayor detalle posible cómo funciona la técnica de corrección Hamming (7,4) y por qué es superior a la demostración didáctica que hicimos en este Laboratorio. Luego, aplicar la técnica sobre la carga útil obtenida.*
 
 - **Funcionamiento del Código Hamming (7,4):** [Explicar la teoría de los bits de paridad superpuestos]
+El código Hamming (7,4) es un algoritmo de detección y corrección de errores (EDAC) perteneciente a la familia de códigos lineales de bloque. Su nomenclatura indica que toma bloques de 4 bits de datos reales (d_1, d_2, d_3, d_4) y les añade 3 bits de paridad (p_1, p_2, p_3), generando una palabra de código (codeword) de 7 bits en total.
+Para garantizar que cada bit de paridad pueda supervisar un grupo único de bits, las posiciones de los bits de paridad se asignan en potencias de 2 (posiciones 2^0, 2^1, 2^2), mientras que los datos se distribuyen en las posiciones restantes:
+Posición del bit: 1(2^0)| 2(2^1) | 3 | 4(2^2) | 5 | 6 | 7 |
+Tipo de bit:       p_1  | p_2    |d_1|  p_3   | d_2| d_3| d_4 |
+Cada bit de paridad cubre a todas las posiciones cuya representación en binario contiene un 1 en su mismo peso de bit:
+p_1 (Posición 1 = 001): Supervisa posiciones con un 1 en el bit menos significativo (1, 3, 5, 7).
+p_2 (Posición 2 = 010): Supervisa posiciones con un 1 en el bit central (2, 3, 6, 7).
+p_3 (Posición 4 = 100): Supervisa posiciones con un 1 en el bit más significativo (4, 5, 6, 7).
+
+Al recibir el bloque de 7 bits, el receptor recalcula tres bits de verificación (s_1, s_2, s_3):
+La combinación del síndrome vector (s_3 s_2 s_1)_2 en binario da directamente la dirección exacta del bit erróneo en base 10: 
+- Si el síndrome es 000: el mensaje no tiene errores.
+- Si el síndrome es 110 (6_{10}): el error se encuentra en la posición 6. Basta con invertir ese bit (0 --> 1 o 1 --> 0) para corregirlo automáticamente.
+
 - **Superioridad técnica:** [Argumentar por qué es mejor que la paridad bidimensional]
+Aunque la paridad bidimensional (utilizada en la práctica del laboratorio) es conceptualmente intuitiva, Hamming (7,4) presenta ventajas estructurales decisivas:
+1- Resolución Inequívoca de Errores (Sin Ambigüedad):
+- Paridad Bidimensional: Cuando ocurren fallos en múltiples filas y columnas (como ocurrió en el Payload 3, con 4 filas y 4 columnas afectadas), el método bidimensional genera múltiples combinaciones válidas (24 combinaciones posibles que satisfacen la paridad). Para corregirlo se requirió de la interpretación contextual humana (tabla ASCII).
+- Hamming (7,4): Resuelve cualquier error de un bit por bloque de manera algebraicamente determinista. No depende del contexto semántico del mensaje ni de la intervención del operador.
+
+2- Procesamiento en Flujo continuo (Streaming) y menor latencia:
+- Paridad Bidimensional: Exige almacenar y estructurar la matriz completa (N X M) antes de poder verificar y calcular las paridades.
+- Hamming (7,4): Opera por bloques independientes de 7 bits. La verificación y corrección suceden bit por bit en hardware de forma instantánea conforme llegan los datos, reduciendo significativamente la memoria de búfer requerida.
+
+3- Eficiencia y Overhead predecible:
+- Paridad Bidimensional: El costo de redundancia depende de las dimensiones arbitrarias asignadas a la matriz (N filas + M columnas de paridad).
+- Hamming (7,4): Mantiene una sobrecarga fija y estandarizada ($4$ bits útiles por cada 7 transmitidos, rendimiento cercano a 57,1%).
+
+4- Extensibilidad a Hamming (8,4) / SEC-DED:
+- Añadiendo un octavo bit de paridad global al bloque (Hamming (8,4)), la técnica permite corregir un error simple y detectar dos errores simultáneos (SEC-DED), ofreciendo una robustez ante ruido que la paridad matricial no puede garantizar.
+
 - **Aplicación sobre la carga útil:** [Explicar o mostrar cómo estructurarían el payload del TP utilizando Hamming en lugar del método actual]
+Para codificar el payload con Hamming (7,4) en lugar de la estructura matricial del TP, se deben dividir los caracteres del mensaje en nibbles (bloques de 4 bits de datos).
+Tomemos el primer carácter del Payload 1 corregido: la letra h.
+1. Conversión a ASCII (7 bits): h = 1101000 en binario. Completando a un bloque de 8 bits (byte completo) para dividirlo en 2 nibbles: 0110 1000.
+2. Codificación del primer nibble (0110):
+Datos: d_1 = 0, d_2 = 1, d_3 = 1, d_4 = 0.
+Calculo de paridades:
+p1 = 1 ; p2 = 1; p3 = 0;
+Palabra Hamming (7,4) generada:
+[p1,p2,d1,p3,d2,d3,d4] = [1,1,0,0,1,1,0]
+
+Si durante el envío se corrompe el bit de la posición 6 (d_3 pasa de 1 a 0), se recibe el vector: [1,1,0,0,1,0,0].
+En el receptor se calcula el síndrome: 
+s_1 = 0; s_2 = 1; s_3= 1;
+El síndrome resulta ser (s_3 s_2 s_1)_2 = (110)_2 = 6_10.
+El sistema identifica en tiempo real que el fallo proviene exactamente de la posición 6, invierte el bit de 0 a 1 y restaura el dato original 0110 de forma automática.
