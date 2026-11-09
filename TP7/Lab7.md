@@ -241,8 +241,17 @@ Sí, pudimos validar que la corrección fue exitosa de forma objetiva y formal, 
 - **Funcionamiento del Código Hamming (7,4):** [Explicar la teoría de los bits de paridad superpuestos]
 El código Hamming (7,4) es un algoritmo de detección y corrección de errores (EDAC) perteneciente a la familia de códigos lineales de bloque. Su nomenclatura indica que toma bloques de 4 bits de datos reales (d_1, d_2, d_3, d_4) y les añade 3 bits de paridad (p_1, p_2, p_3), generando una palabra de código (codeword) de 7 bits en total.
 Para garantizar que cada bit de paridad pueda supervisar un grupo único de bits, las posiciones de los bits de paridad se asignan en potencias de 2 (posiciones 2^0, 2^1, 2^2), mientras que los datos se distribuyen en las posiciones restantes:
-Posición del bit: 1(2^0)| 2(2^1) | 3 | 4(2^2) | 5 | 6 | 7 |
-Tipo de bit:       p_1  | p_2    |d_1|  p_3   | d_2| d_3| d_4 |
+
+  | Posicion del bit | Tipo de bit | 
+  | ---------------- | ------------| 
+  | 1(2^0)           | p_1         |
+  | 2(2^1)           | p_2         | 
+  | 3                | d_1         |
+  | 4(2^2)           | p_3         | 
+  | 5                | d_2         | 
+  | 6                | d_3         |
+  | 7                | d_4         |
+
 Cada bit de paridad cubre a todas las posiciones cuya representación en binario contiene un 1 en su mismo peso de bit:
 p_1 (Posición 1 = 001): Supervisa posiciones con un 1 en el bit menos significativo (1, 3, 5, 7).
 p_2 (Posición 2 = 010): Supervisa posiciones con un 1 en el bit central (2, 3, 6, 7).
@@ -275,14 +284,22 @@ Para codificar el payload con Hamming (7,4) en lugar de la estructura matricial 
 Tomemos el primer carácter del Payload 1 corregido: la letra h.
 1. Conversión a ASCII (7 bits): h = 1101000 en binario. Completando a un bloque de 8 bits (byte completo) para dividirlo en 2 nibbles: 0110 1000.
 2. Codificación del primer nibble (0110):
-Datos: d_1 = 0, d_2 = 1, d_3 = 1, d_4 = 0.
+- Datos: d_1 = 0, d_2 = 1, d_3 = 1, d_4 = 0.
+
 Calculo de paridades:
-p1 = 1 ; p2 = 1; p3 = 0;
-Palabra Hamming (7,4) generada:
-[p1,p2,d1,p3,d2,d3,d4] = [1,1,0,0,1,1,0]
+- p1 = 1
+- p2 = 1
+- p3 = 0
+
+Palabra Hamming (7,4) generada: [p1,p2,d1,p3,d2,d3,d4] = [1,1,0,0,1,1,0]
 
 Si durante el envío se corrompe el bit de la posición 6 (d_3 pasa de 1 a 0), se recibe el vector: [1,1,0,0,1,0,0].
+
 En el receptor se calcula el síndrome: 
-s_1 = 0; s_2 = 1; s_3= 1;
+- s_1 = 0
+- s_2 = 1
+- s_3= 1
+
 El síndrome resulta ser (s_3 s_2 s_1)_2 = (110)_2 = 6_10.
+
 El sistema identifica en tiempo real que el fallo proviene exactamente de la posición 6, invierte el bit de 0 a 1 y restaura el dato original 0110 de forma automática.
