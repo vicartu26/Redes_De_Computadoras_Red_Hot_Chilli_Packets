@@ -215,15 +215,20 @@ Para cada payload armamos un archivo con el mismo formato que `mensaje.txt.`Part
 
 *¿Qué hubiera pasado si el mensaje tenía errores en dos bits de filas y columnas distintas? ¿Y si se dañaba un bit de los de control?*
 
-- **Error en dos bits de datos:** [Desarrollar respuesta teórica]
-- **Daño en un bit de control:** [Desarrollar respuesta teórica]
+- **Error en dos bits de datos:** Si los errores están en (f₁, c₁) y (f₂, c₂), con filas y columnas distintas, fallan dos paridades de fila y dos de columna. El error se detecta, pero no se puede corregir de forma unívoca: el síndrome es compatible con {(f₁, c₁), (f₂, c₂)}, que es el caso real, y con {(f₁, c₂), (f₂, c₁)}, y ambos satisfacen todas las paridades. Es el mismo problema del payload 3 a menor escala: 2! = 2 emparejamientos posibles contra 4! = 24. La paridad bidimensional solo garantiza la corrección de un error simple. Si los dos errores caen en la misma fila o columna, la paridad de esa línea no falla porque se compensan, y la ubicación queda todavía más ambigua.
+- **Daño en un bit de control:** Los datos están intactos, pero falla solo una fila o solo una columna, sin su contraparte. Eso lo distingue de un error de datos, que siempre hace fallar una fila y una columna a la vez. El receptor concluye que el error está en el bit de CHECK y no modifica los datos. Si no hiciera esa distinción, “corregiría” un bit correcto y arruinaría el mensaje.
 
 ### Reflexión 2
 
 *Si el mensaje es texto en castellano, muchas veces un error "se adivina" por contexto. ¿Sirve eso para una contraseña, un número de cuenta o una dirección web? ¿Qué aporta el código frente a "leer y adivinar"?*
 
-- **Contexto en datos críticos:** [Desarrollar justificación]
-- **Aporte del código (EDAC):** [Desarrollar justificación técnica]
+- **Contexto en datos críticos:** Adivinar por contexto funciona en castellano porque el idioma es muy redundante: no toda combinación de letras es una palabra válida. Una contraseña, un número de cuenta o una URL no tienen esa redundancia, ya que un carácter cambiado produce otra cadena igualmente válida. En el Payload 3 (Qr3mi8!:)1p-dIgZ) nada permite deducir qué caracteres están mal, y en los Payloads 1 y 2 el identificador del video es una secuencia aleatoria. Un error ahí lleva a otro video, a una página inexistente o a un sitio malicioso; en un número de cuenta, a otra cuenta válida. Además, adivinar es subjetivo, no verificable y no automatizable.
+- **Aporte del código (EDAC):** El código agrega redundancia matemática independiente del contenido, que funciona igual para texto, claves o URLs:
+  - Detección objetiva: el receptor sabe con certeza si las paridades coinciden, sin interpretar el mensaje.
+Corrección determinista y verificable de un error simple: la fila y la columna que fallan señalan el bit exacto, y tras corregir se comprueba que el síndrome sea nulo (Reflexión 3).
+  - Límites conocidos: se sabe qué casos garantiza (un error corregible, dos detectables) y cuándo conviene retransmitir o usar un código más potente (Hamming, CRC) en lugar de adivinar.
+  
+Para datos críticos, el contexto sirve como verificación adicional sobre lo que el código ya validó, no como reemplazo.
 
 ### Reflexión 3
 
